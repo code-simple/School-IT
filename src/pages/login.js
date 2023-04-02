@@ -1,10 +1,11 @@
 import React from 'react'
+import LoginWithEmailPass from '@/src/components/LoginWithEmailPass'
 
 const Login = () => {
   return (
-    <div>
-      <h1>Login Page</h1>
-    </div>
+   <>
+   <LoginWithEmailPass/>
+   </>
   )
 }
 
