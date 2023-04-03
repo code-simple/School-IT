@@ -11,13 +11,18 @@ import { useRouter } from 'next/router';
 const Form = () => {
     const router = useRouter()
 
+    const [firstname, setFirstname] = useState('')
+    const [lastname, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+//Schema
     const schema = Yup.object().shape({
         firstname: Yup.string().required('Field is required'),
         lastname: Yup.string().required('Field is required'),
         email: Yup.string().email('Invalid Email').required('Email is Required'),
         password: Yup.string().required('Password is required')
     })
-
+//useForm
     const { handleSubmit,setError, register,formState: { errors, isValid, isSubmitting} } = useForm({
         resolver: yupResolver(schema),
         defaultValues:{
@@ -28,18 +33,13 @@ const Form = () => {
         }
     })
 
-    const [firstname, setFirstname] = useState('')
-    const [lastname, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-
-    const reg = () => {
+// Create new user, add data to firestore
+    const onSubmit = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                //Todo Send First name, Last Name , Email, uid
+
                 addDetails(user.uid)
                 router.push('/')
 
@@ -63,11 +63,9 @@ const Form = () => {
         })
     }
 
-
-
     return (
         <div className='grid h-screen place-items-center'>
-            <form onSubmit={handleSubmit(reg)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='my-4'>
                     <input className='w-80 h-10 px-3 outline rounded-md' {...register('firstname')} type='text' placeholder='First Name'
                         onChange={(e) => setFirstname(e.target.value)} />
