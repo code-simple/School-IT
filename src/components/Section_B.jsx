@@ -9,16 +9,17 @@ const Section_B = () => {
   return (
     <div className="flex bg-blue_1 bg-opacity-10 justify-center items-center flex-col md:flex-row py-32 gap-8">
       <div className="flex flex-col gap-8">
-        <p className="text-3xl font-medium  max-w-[536px]">
+        <p className="text-3xl font-medium  max-w-[536px] px-20 sm:px-0">
           Increase adoption across your learning community
         </p>
-        <p className="max-w-[536px]">
-          SchoolIT is designed to automate a schools diverse operations from classes, exams to school events calendar.
+        <p className="max-w-[536px] px-20 sm:px-0">
+          SchoolIT is designed to automate a schools diverse operations from
+          classes, exams to school events calendar.
         </p>
         <div className="flex gap-4 items-center">
           <Pc />
           <p>
-            Modern tools that promote technology-oriented culture and digital 
+            Modern tools that promote technology-oriented culture and digital
             literacy.
           </p>
         </div>
