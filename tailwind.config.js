@@ -11,7 +11,8 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        lightred:'#F18585'
+        lightred:'#F18585',
+        blue_1:'#46C3EA'
       }
     },
 

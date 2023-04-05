@@ -4,10 +4,12 @@ import { auth } from '@/src/components/config/firebase';
 import * as Yup from 'yup'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image'
-import logo from '@/src/assets/logo.png'
+import Logo_svg from '../assets/logo_svg';
+import { useRouter } from 'next/router';
 
 const LoginWithEmailPass = () => {
+
+  const router = useRouter()
 
   const schema = Yup.object().shape({
     email: Yup.string().email().required('Email is Required'),
@@ -35,8 +37,7 @@ const LoginWithEmailPass = () => {
       });
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const onSubmit = () => {
     loginWithEmailPassword()
   }
   return (
@@ -45,12 +46,12 @@ const LoginWithEmailPass = () => {
 
         <h1 className='text-3xl text-white font-semibold'>Not Signed Up Yet?</h1>
         <p className='mt-5 px-28 text-center'>Click the link below to get started</p>
-        <button className='rounded-full border-white border-2 px-28 py-2 m-10 text-xl'>Sign Up</button>
+        <button className='rounded-full border-white border-2 px-28 py-2 m-10 text-xl' onClick={()=>router.push('/signup')}>Sign Up</button>
       </div>
       <div className='flex flex-col h-screen place-items-center'>
         
-        <form onSubmit={onSubmit}>
-        <Image src={logo} width={202} height={65.54} className='mt-5 ml-5' />
+        <form onSubmit={handleSubmit(onSubmit)}>
+        <Logo_svg />
           <div className='flex flex-col mx-60 py-20 place-items-center'>
           <div className='my-4'>
           <h1 className='text-center mt-20 text-3xl font-semibold'>Access Account</h1>

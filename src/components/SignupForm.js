@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from '@/src/components/config/firebase';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router';
-import Image from 'next/image'
-import logo from '@/src/assets/logo.png'
-
+import Logo_svg from '../assets/logo_svg';
 
 
 const SignupForm = () => {
@@ -23,7 +21,7 @@ const SignupForm = () => {
         firstname: Yup.string().required('Field is required'),
         lastname: Yup.string().required('Field is required'),
         email: Yup.string().email('Invalid Email').required('Email is Required'),
-        password: Yup.string().required('Password is required')
+        password: Yup.string().required('Password is required').min(8,'Minimum 8 digits')
     })
     //useForm
     const { handleSubmit, setError, register, formState: { errors, isValid, isSubmitting } } = useForm({
@@ -58,7 +56,7 @@ const SignupForm = () => {
     }
 
     const addDetails = async (uid) => {
-        await addDoc(collection(db, 'registered'), {
+        await setDoc(doc(db,'users',uid), {
             uid,
             email,
             firstname,
@@ -67,19 +65,20 @@ const SignupForm = () => {
     }
 
     return (
-        <div className='flex'>
-            <div className='flex flex-col text-white bg-lightred w-[570px] h-[1024] justify-center place-items-center'>
-
+        <div className='grid md:grid-cols-2'>
+            <div className='flex bg-lightred  text-white'>
+            <div className='flex flex-col text-whitew-[570px] h-screen justify-center place-items-center'>
                 <h1 className='text-3xl text-white font-semibold'>Already Signed Up?</h1>
                 <p className='mt-5 px-28 text-center'>To stay connected with us  please login with your personal info</p>
-                <button className='rounded-full border-white border-2 px-28 py-2 m-10 text-xl'>Sign In</button>
+                <button className='rounded-full border-white border-2 px-28 py-2 m-10 text-xl' onClick={() => router.push('/login')}>Sign In</button>
             </div>
+        </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Image src={logo} width={202} height={65.54} className='mt-5 ml-5' />
-                <div className='flex flex-col mx-60 py-20 place-items-center'>
+                <Logo_svg className='m-14'/>
+                <div className='flex flex-col  place-items-center text-center'>
                     <div className='my-4'>
                         <h1 className='text-center mt-20 text-3xl font-semibold'>Create Account</h1>
-                        <p className='text-center text-sm my-5'>Let’s get you all set up for your first onboarding experience </p>
+                        <p className='text-center text-base my-5 max-w-[455px]'>Let’s get you all set up for your first onboarding experience </p>
                         <input className='w-96 h-10 px-3 border-2 border-lightred outline-lightred rounded-md' {...register('firstname')} type='text' placeholder='First Name'
                             onChange={(e) => setFirstname(e.target.value)} />
                         <p className='text-red-600'>{errors.firstname && errors.firstname.message}</p>
@@ -104,7 +103,7 @@ const SignupForm = () => {
                         <span className='text-sm'> agree terms and conditions</span>
                     </div>
                     <div className='text-center'>
-                        <button className='bg-lightred px-20 py-2  text-white rounded-full disabled:bg-slate-300'
+                        <button className='bg-lightred px-20 py-2 mb-20  text-white rounded-full disabled:bg-slate-300'
                             disabled={!isValid}
                         >Submit</button>
                     </div>
