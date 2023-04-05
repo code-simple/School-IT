@@ -13,8 +13,7 @@ const Section_B = () => {
           Increase adoption across your learning community
         </p>
         <p className="max-w-[536px]">
-          SchoolIT is designed to automate a school's diverse operations from
-          classes, exams to school events calendar.
+          SchoolIT is designed to automate a school's diverse operations from classes, exams to school events calendar.
         </p>
         <div className="flex gap-4 items-center">
           <Pc />
