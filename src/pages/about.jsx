@@ -35,7 +35,7 @@ const About = () => {
             </p>
             <div className="grid grid-cols-2 pt-10 gap-24">
             <p>
-              SchoolIT Technology is designed to automate a school's diverse
+              SchoolIT Technology is designed to automate a schools diverse
               operations from classes, exams to school events calendar. It
               provides a powerful online community to bring parents, teachers
               and students on a common interactive platform.

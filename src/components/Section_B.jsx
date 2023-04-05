@@ -14,12 +14,12 @@ const Section_B = () => {
         </p>
         <p className="max-w-[536px]">
           SchoolIT is designed to automate a school's diverse operations from
-          classes, exams to school events calendar.{" "}
+          classes, exams to school events calendar.
         </p>
         <div className="flex gap-4 items-center">
           <Pc />
           <p>
-            Modern tools that promote technology-oriented culture and digital
+            Modern tools that promote technology-oriented culture and digital 
             literacy.
           </p>
         </div>
