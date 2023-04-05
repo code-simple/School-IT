@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Lady_laptop from '../assets/Home_lady_laptop.png'
 
-const Home_first_section = () => {
+const Hero = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center px-4 md:px-0 my-28">
       <div>
@@ -18,4 +18,4 @@ const Home_first_section = () => {
   );
 };
 
-export default Home_first_section;
+export default Hero;
