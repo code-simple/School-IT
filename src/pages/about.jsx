@@ -34,12 +34,17 @@ const About = () => {
               About
             </p>
             <div className="grid grid-cols-2 pt-10 gap-24">
-            <p>
-              SchoolIT Technology is designed to automate a schools diverse operations from classes, exams to school events calendar. It provides a powerful online community to bring parents, teachers and students on a common interactive platform.
-            </p>
-            <About_board/>
+              <p>
+                SchoolIT Technology is designed to automate a schools diverse
+                operations from classes, exams to school events calendar. It
+                provides a powerful online community to bring parents, teachers
+                and students on a common interactive platform.
+              </p>
+              <About_board />
             </div>
-            <button className='bg-lightred px-20 py-2 mb-20  text-white rounded-full disabled:bg-slate-300'>Get Started</button>
+            <button className="bg-lightred px-20 py-2 mb-20  text-white rounded-full disabled:bg-slate-300">
+              Get Started
+            </button>
           </div>
         </div>
       </div>
