@@ -16,20 +16,22 @@ const Section_B = () => {
           SchoolIT is designed to automate a schools diverse operations from
           classes, exams to school events calendar.
         </p>
-        <div className="flex gap-4 items-center">
-          <Pc />
-          <p>
-            Modern tools that promote technology-oriented culture and digital
-            literacy.
-          </p>
-        </div>
-        <div className="flex gap-4 items-center">
-          <People />
-          <p>Increased student, parent, and family engagement.</p>
-        </div>
-        <div className="flex gap-4 items-center">
-          <Man />
-          <p>Well-received tools that enable progressive practices.</p>
+        <div className="grid gap-5 px-4">
+          <div className="flex gap-4 items-center">
+            <Pc />
+            <p>
+              Modern tools that promote technology-oriented culture and digital
+              literacy.
+            </p>
+          </div>
+          <div className="flex gap-4 items-center">
+            <People />
+            <p>Increased student, parent, and family engagement.</p>
+          </div>
+          <div className="flex gap-4 items-center">
+            <Man />
+            <p>Well-received tools that enable progressive practices.</p>
+          </div>
         </div>
       </div>
       <Image src={Section_B_img} alt="image2" />

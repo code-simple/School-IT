@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
        
     </div>
-    <div className='flex justify-center mt-32'>
+    <div className='flex justify-center mt-32 mb-4'>
             <p>Copyright @  schoolIT, 2019</p>
         </div>
     </Container>
