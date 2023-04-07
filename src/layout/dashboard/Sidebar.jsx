@@ -29,7 +29,7 @@ const Sidebar = () => {
         </div>
         <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg ">
           <Admin_people />
-          <Link href="/dashboard/employee">Employee</Link>
+          <Link href="/dashboard/employees">Employee</Link>
         </div>
         <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
           <Admin_attendance />

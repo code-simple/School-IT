@@ -1,5 +1,11 @@
 import Admin_dropdown from "@/src/assets/admin_dropdown";
 import React from "react";
+import Image from "next/image";
+import T_img1 from "@/src/assets/table_img1.png";
+import T_img2 from "@/src/assets/table_img2.png";
+import T_img3 from "@/src/assets/table_img3.png";
+import T_img4 from "@/src/assets/table_img4.png";
+import T_img5 from "@/src/assets/table_img5.png";
 
 const Dashboard = () => {
   return (
@@ -40,28 +46,89 @@ const Dashboard = () => {
         </div>
       </div>
       {/* Employees Tracker */}
-      <h1 className="pt-7 text-2xl font-bold">Employees Tracker</h1>
-      <div>
-        <table className="min-w-full text-left text-sm font-light">
-          <thead class="text-base text-[#9F9F9F] ">
-            <tr>
-              <th scope="col" class="px-6 py-4">
-                PERSONAL DETAILS
-              </th>
-              <th scope="col" class="px-6 py-4">
-                DATE
-              </th>
-              <th scope="col" class="px-6 py-4">
-                DEPARTMENT
-              </th>
-              <th scope="col" class="px-6 py-4">
-                STATUS
-              </th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+      <h1 className="py-7 text-2xl font-bold">Employees Tracker</h1>
+      {/* Table */}
+      <table className="pt-7 border-separate border-spacing-y-2">
+        <thead class="text-base text-[#9F9F9F] text-left">
+          <tr>
+            <th>PERSONAL DETAILS</th>
+            <th>DATE</th>
+            <th>DEPARTMENT</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="bg-white ">
+            <td className="py-4 pl-5 flex items-center gap-4">
+              <Image src={T_img1} className="ml-5" />
+              <p>Aderinsola Emmanuel</p>
+            </td>
+            <td>02 - 01 - 2020</td>
+            <td>Teaching</td>
+            <td>
+              <p className="bg-[#49A71C4D]/30 text-center rounded-md mr-3">
+                Present
+              </p>
+            </td>
+          </tr>
+          <tr className="bg-white ">
+            <td className="py-4 pl-5 flex items-center gap-4">
+              <Image src={T_img2} className="ml-5" />
+              <p>Adefarasin Elizabeth</p>
+            </td>
+            <td>02 - 01 - 2020</td>
+            <td>Administration</td>
+            <td>
+              <p className="bg-[#FFB3B3] text-center rounded-md mr-3">Absent</p>
+            </td>
+          </tr>
+          <tr className="bg-white ">
+            <td className="py-4 pl-5 flex items-center gap-4">
+              <Image src={T_img3} className="ml-5" />
+              <p>Chukwudi Ugochukwu</p>
+            </td>
+            <td>02 - 01 - 2020</td>
+            <td>Administration</td>
+            <td>
+              <p className="bg-[#49A71C4D]/30 text-center rounded-md mr-3">
+                Present
+              </p>
+            </td>
+          </tr>
+          <tr className="bg-white ">
+            <td className="py-4 pl-5 flex items-center gap-4">
+              <Image src={T_img4} className="ml-5" />
+              <p>Abdullahi Hawau</p>
+            </td>
+            <td>02 - 01 - 2020</td>
+            <td>Teaching</td>
+            <td>
+              <p className="bg-[#49A71C4D]/30 text-center rounded-md mr-3">
+                Present
+              </p>
+            </td>
+          </tr>
+          <tr className="bg-white ">
+            <td className="py-4 pl-5 flex items-center gap-4">
+              <Image src={T_img5} className="ml-5" />
+              <p>Uzomeka Chinyere</p>
+            </td>
+            <td>02 - 01 - 2020</td>
+            <td>Security</td>
+            <td>
+              <p className="bg-[#FFB3B3] text-center rounded-md mr-3">Absent</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button
+        onClick={() => {}}
+        className="flex pt-8 pb-20 gap-4 justify-center place-items-center"
+      >
+        <h1 className="font-bold">LOAD MORE</h1>
+        <Admin_dropdown className="-rotate-90" />
+      </button>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import Section_B_img from "../assets/Section_B.png";
-import Man from "../assets/Man";
-import Pc from "../assets/Pc";
-import People from "../assets/People";
+import Section_B_img from "@/src/assets/Section_B.png";
+import Man from "@/src/assets/Man";
+import Pc from "@/src/assets/Pc";
+import People from "@/src/assets/People";
 
 const Section_B = () => {
   return (

@@ -1,9 +1,9 @@
 import React from "react";
-import Section_c_1 from "../assets/section_c_1";
-import Container from "./Container";
-import Section_C_2 from "../assets/section_C_2";
-import Section_C_3 from "../assets/Section_C_3";
-import Button from "./Button";
+import Section_c_1 from "../../assets/section_c_1";
+import Container from "../../components/Container";
+import Section_C_2 from "../../assets/section_C_2";
+import Section_C_3 from "../../assets/Section_C_3";
+import Button from "../../components/Button";
 
 const Section_C = () => {
   return (
@@ -25,7 +25,7 @@ const Section_C = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button btname="Get Started" path='/signup' />
+        <Button btname="Get Started" path="/signup" />
       </div>
     </Container>
   );

@@ -1,17 +1,17 @@
-import Nav from "@/src/components/navbar";
-import Hero from "@/src/components/Hero";
-import Section_B from "@/src/components/Section_B";
-import Section_C from "@/src/components/Section_C";
-import Footer from "../components/Footer";
+import Nav from "@/src/contents/home/navbar";
+import Hero from "@/src/contents/home/Hero";
+import Section_B from "@/src/contents/home/Section_B";
+import Section_C from "@/src/contents/home/Section_C";
+import Footer from "../contents/home/Footer";
 
 export default function Home() {
   return (
     <div>
-      <Nav/>
+      <Nav />
       <Hero />
       <Section_B />
       <Section_C />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
