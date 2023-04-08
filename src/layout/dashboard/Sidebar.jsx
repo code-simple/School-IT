@@ -13,7 +13,7 @@ import Container from "@/src/components/Container";
 const Sidebar = () => {
   return (
     // <div className="basis-[248px] h-full shrink-0 flex flex-col  bg-[#435260]">
-    <div className="w-[248px] h-full shrink-0 flex flex-col  bg-[#435260]">
+    <div className="w-[248px] h-full shrink-0   bg-[#435260] hidden md:block">
       <div className="pl-7 pt-2 pb-14">
         <Logo_hat />
       </div>
@@ -23,26 +23,37 @@ const Sidebar = () => {
         <span className="text-xs pt-7">Super Admin</span>
       </div>
       <div className="grid gap-4 pt-14">
-        <div className="flex text-white  gap-4  pl-8 hover:bg-[#2D4053] py-2 rounded-r-lg ">
-          <Admin_home />
-          <Link href="/dashboard">Home</Link>
-        </div>
-        <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg ">
-          <Admin_people />
-          <Link href="/dashboard/employees">Employee</Link>
-        </div>
-        <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
-          <Admin_attendance />
-          <Link href="#">Attendance</Link>
-        </div>
-        <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
-          <Admin_expenses />
-          <Link href="#">Expenses</Link>
-        </div>
-        <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
-          <Admin_events />
-          <Link href="#">Events</Link>
-        </div>
+        <Link href="/dashboard">
+          <div className="flex text-white  gap-4  pl-8 hover:bg-[#2D4053] py-2 rounded-r-lg ">
+            <Admin_home />
+            Home
+          </div>
+        </Link>
+        <Link href="/dashboard/employees">
+          <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg ">
+            <Admin_people />
+            Employee
+          </div>
+        </Link>
+        <Link href="/dashboard/attendance-tracker">
+          <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
+            <Admin_attendance />
+            Attendance
+          </div>
+        </Link>
+
+        <Link href="/dashboard/createEmployee">
+          <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
+            <Admin_expenses />
+            Accounts
+          </div>
+        </Link>
+        <Link href="#">
+          <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
+            <Admin_events />
+            Events
+          </div>
+        </Link>
       </div>
     </div>
   );

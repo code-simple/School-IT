@@ -15,7 +15,7 @@ export default function Employee() {
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Employees</h1>
         <Link
-          href="/dashboard/manage_employee"
+          href="/dashboard/create-employee"
           className="flex gap-6 bg-[#074279] py-3 px-11 rounded-full text-white text-sm font-bold"
         >
           <span>+</span>
@@ -49,7 +49,10 @@ export default function Employee() {
               <p>02 - 01 - 2008</p>
             </td>
             <td>
-              <Link href="#" className="font-bold bg text-[#074279]">
+              <Link
+                href="/dashboard/manage-employee"
+                className="font-bold bg text-[#074279]"
+              >
                 Manage
               </Link>
             </td>

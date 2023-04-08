@@ -4,8 +4,9 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Cross from "@/src/assets/cross";
+import Link from "next/link";
 
-Manage_Employee.getLayout = function getLayout(page) {
+Create_Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 const defaultValues = {
@@ -16,7 +17,7 @@ const defaultValues = {
   gender: "",
   salary: "",
 };
-export default function Manage_Employee() {
+export default function Create_Employee() {
   const schema = Yup.object().shape({
     surname: Yup.string().required("Surname is Required"),
     firstname: Yup.string().required("Firstname is required"),
@@ -37,7 +38,7 @@ export default function Manage_Employee() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-bold pt-14 pl-16">Manage Employee</h1>
+      <h1 className="text-2xl font-bold pt-14 pl-16">Create new Employee</h1>
       <div className="flex justify-center pb-16 pt-14">
         <form
           onSubmit={handleSubmit((data) => {
@@ -46,9 +47,9 @@ export default function Manage_Employee() {
           className="bg-white rounded-md  pl-8 pr-8 pb-7 "
         >
           <div className="pt-8 pl-8 pb-14">
-            <button type="button">
+            <Link href="/dashboard/employees">
               <Cross />
-            </button>
+            </Link>
           </div>
           <div className="flex flex-col max-w-[338px]">
             <label
@@ -160,11 +161,8 @@ export default function Manage_Employee() {
             )}
 
             <div className="flex justify-evenly pt-9 gap-12">
-              <button className="bg-[#074279] text-white text-base font-semibold rounded-full py-2 px-11">
-                Update
-              </button>
-              <button className="bg-[#AB2424] text-white text-base font-semibold p-1 rounded-full py-2 px-11">
-                Delete
+              <button className="bg-[#074279] text-white text-base font-semibold rounded-full py-2 px-36">
+                Create
               </button>
             </div>
           </div>

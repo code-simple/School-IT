@@ -16,7 +16,7 @@ const Dashboard = () => {
       </div>
       <p className="pt-7">02-January-2020</p>
       {/* Cards */}
-      <div className="flex pt-12 justify-evenly">
+      <div className="grid gap-3 md:flex pt-12 justify-evenly">
         <div className="flex flex-col w-72 h-40 bg-white shadow-2xl rounded-xl">
           <span className="bg-[#1C33A7] w-[110px] mt-5 ml-5 bg-opacity-30 rounded-full text-center text-xs">
             Attendance
