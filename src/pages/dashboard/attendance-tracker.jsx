@@ -8,7 +8,8 @@ import Layout from "@/src/layout/dashboard/Layout";
 import Radio from "@/src/components/Radio";
 import Tick from "@/src/assets/tick";
 import CrossRed from "@/src/assets/cross-red";
-import { Employees as MOCK_DATA } from "@/src/pages/dashboard/data/index";
+// import Employee from "@/src/pages/dashboard/data/";
+import Employees from "@/src/pages/dashboard/data/";
 
 Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -45,7 +46,7 @@ export default function Employee() {
           </tr>
         </thead>
         <tbody>
-          {MOCK_DATA.filter((employee) =>
+          {Employees.filter((employee) =>
             employee.fullName.toLowerCase().includes(filterValue.toLowerCase())
           ).map((obj) => (
             <tr key={obj.id} className="bg-white">
