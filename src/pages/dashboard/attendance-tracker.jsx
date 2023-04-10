@@ -16,6 +16,7 @@ Employee.getLayout = function getLayout(page) {
 };
 
 export default function Employee() {
+  const [attendance, setAttendance] = useState("");
   return (
     <div className="grid px-14 pt-14">
       <div className="flex justify-between">

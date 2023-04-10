@@ -9,7 +9,6 @@ export default function Layout({ children }) {
 
       <div className="h-full overflow-y-auto flex-grow">
         <Navbar />
-        {/* <div className="h-[calc(100vh-43px)] overflow-y-auto">{children}</div> */}
         {children}
       </div>
     </div>

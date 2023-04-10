@@ -18,7 +18,7 @@ const Sidebar = () => {
         <Logo_hat />
       </div>
       <div className="grid bg-[#2D4053] place-items-center py-8 text-white text-base">
-        <Image src={Avatar} />
+        <Image src={Avatar} alt="avatar" />
         <span className="text-base pt-2">Richard Oyome</span>
         <span className="text-xs pt-7">Super Admin</span>
       </div>
@@ -42,13 +42,13 @@ const Sidebar = () => {
           </div>
         </Link>
 
-        <Link href="/dashboard/createEmployee">
+        <Link href="/dashboard/accounts">
           <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
             <Admin_expenses />
             Accounts
           </div>
         </Link>
-        <Link href="#">
+        <Link href="/dashboard/create-event">
           <div className="flex text-white pl-8  gap-4 hover:bg-[#2D4053] py-2 rounded-r-lg">
             <Admin_events />
             Events

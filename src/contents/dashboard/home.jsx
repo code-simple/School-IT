@@ -24,7 +24,7 @@ const Dashboard = () => {
           <div className="flex justify-center pt-5 ">
             <h1 className="font-bold text-4xl">
               300
-              <spn className="text-base text-slate-400 ">/400</spn>
+              <span className="text-base text-slate-400 ">/400</span>
             </h1>
           </div>
         </div>
@@ -60,7 +60,7 @@ const Dashboard = () => {
         <tbody>
           <tr className="bg-white ">
             <td className="py-4 pl-5 flex items-center gap-4">
-              <Image src={T_img1} className="ml-5" />
+              <Image src={T_img1} className="ml-5" alt="img1" />
               <p>Aderinsola Emmanuel</p>
             </td>
             <td>02 - 01 - 2020</td>
@@ -73,7 +73,7 @@ const Dashboard = () => {
           </tr>
           <tr className="bg-white ">
             <td className="py-4 pl-5 flex items-center gap-4">
-              <Image src={T_img2} className="ml-5" />
+              <Image src={T_img2} className="ml-5" alt="img2" />
               <p>Adefarasin Elizabeth</p>
             </td>
             <td>02 - 01 - 2020</td>
@@ -84,7 +84,7 @@ const Dashboard = () => {
           </tr>
           <tr className="bg-white ">
             <td className="py-4 pl-5 flex items-center gap-4">
-              <Image src={T_img3} className="ml-5" />
+              <Image src={T_img3} className="ml-5" alt="img3" />
               <p>Chukwudi Ugochukwu</p>
             </td>
             <td>02 - 01 - 2020</td>
@@ -97,7 +97,7 @@ const Dashboard = () => {
           </tr>
           <tr className="bg-white ">
             <td className="py-4 pl-5 flex items-center gap-4">
-              <Image src={T_img4} className="ml-5" />
+              <Image src={T_img4} className="ml-5" alt="img4" />
               <p>Abdullahi Hawau</p>
             </td>
             <td>02 - 01 - 2020</td>
@@ -110,7 +110,7 @@ const Dashboard = () => {
           </tr>
           <tr className="bg-white ">
             <td className="py-4 pl-5 flex items-center gap-4">
-              <Image src={T_img5} className="ml-5" />
+              <Image src={T_img5} className="ml-5" alt="img5" />
               <p>Uzomeka Chinyere</p>
             </td>
             <td>02 - 01 - 2020</td>
