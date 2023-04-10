@@ -9,7 +9,7 @@ import Radio from "@/src/components/Radio";
 import Tick from "@/src/assets/tick";
 import CrossRed from "@/src/assets/cross-red";
 // import Employee from "@/src/pages/dashboard/data/";
-import Employees from "@/src/pages/dashboard/data/";
+import Employees from "./data";
 
 Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
