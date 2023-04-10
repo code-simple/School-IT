@@ -1,4 +1,4 @@
-export const Employees = [
+const Employees = [
   {
     id: 1,
     fullName: "Aderinsola Emmanuel",
@@ -60,3 +60,4 @@ export const Employees = [
     attendence: "present",
   },
 ];
+export default Employees;
