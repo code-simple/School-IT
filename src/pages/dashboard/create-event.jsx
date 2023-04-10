@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Link from "next/link";
 import Cross from "@/src/assets/cross";
+import DataTable from "react-data-table-component";
 
 Create_Event.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -29,6 +30,75 @@ export default function Create_Event() {
     resolver: yupResolver(schema),
   });
 
+  const deleteBtn = () => {
+    return <button className="text-red-600 text-xs font-bold">Delete</button>;
+  };
+
+  const data = [
+    {
+      ID: 1,
+      DATE: "2023-04-10",
+      DESCRIPTION: "General Staff Meeting",
+      ACTION: deleteBtn(),
+    },
+    {
+      ID: 2,
+      DATE: "2023-04-10",
+      DESCRIPTION: "Emergency meeting at COB",
+      ACTION: deleteBtn(),
+    },
+    {
+      ID: 3,
+      DATE: "2023-04-10",
+      DESCRIPTION: "Extra-Currillum schedule session",
+      ACTION: deleteBtn(),
+    },
+    {
+      ID: 4,
+      DATE: "2023-04-10",
+      DESCRIPTION: "Administrative end of the year report review",
+      ACTION: deleteBtn(),
+    },
+    {
+      ID: 5,
+      DATE: "2023-04-10",
+      DESCRIPTION:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet viverra sagittis commodo dolor ipsum",
+      ACTION: deleteBtn(),
+    },
+  ];
+  const columns = [
+    {
+      name: "DESCRIPTION",
+      selector: (row, i) => row.DESCRIPTION,
+      sortable: true,
+    },
+    { name: "DATE", selector: (row, i) => row.DATE, sortable: true },
+
+    { name: "ACTION", selector: (row, i) => row.ACTION, sortable: false },
+  ];
+
+  // Stripped Rows Style
+  const conditionalRowStyles = [
+    {
+      when: (row) => parseInt(row.ID) % 2 == 0,
+      style: {
+        backgroundColor: "#ECEAEA",
+      },
+    },
+  ];
+  // Head Row style
+  const customStyles = {
+    headRow: {
+      style: {
+        background: "#E5E5E5",
+        fontSize: "12px",
+        fontWeight: "bold",
+        color: "#9F9F9F",
+        borderBottom: "1px solid gray",
+      },
+    },
+  };
   return (
     <div className="flex flex-col">
       <h1 className="text-2xl font-bold pt-14 pl-16">Events</h1>
@@ -85,6 +155,19 @@ export default function Create_Event() {
             </div>
           </div>
         </form>
+      </div>
+
+      <div className="flex justify-center text-black/50 text-xl font-bold py-14">
+        <h1>Event History</h1>
+      </div>
+      {/* Event History Table */}
+      <div className="px-14 pb-14">
+        <DataTable
+          columns={columns}
+          data={data}
+          conditionalRowStyles={conditionalRowStyles}
+          customStyles={customStyles}
+        />
       </div>
     </div>
   );

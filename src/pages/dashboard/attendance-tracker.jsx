@@ -16,13 +16,17 @@ Employee.getLayout = function getLayout(page) {
 };
 
 export default function Employee() {
-  const [attendance, setAttendance] = useState("");
+  const [filterValue, setFilterValue] = useState("");
+
   return (
     <div className="grid px-14 pt-14">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">Attendance Tracker</h1>
         <div className="flex gap-8 rounded-md">
           <input
+            type="text"
+            value={filterValue}
+            onChange={(e) => setFilterValue(e.target.value)}
             className="rounded-md px-7 p-2 text-center"
             placeholder="Filter by employee's name"
           />
@@ -42,7 +46,9 @@ export default function Employee() {
           </tr>
         </thead>
         <tbody>
-          {MOCK_DATA.map((obj) => (
+          {MOCK_DATA.filter((employee) =>
+            employee.fullName.toLowerCase().includes(filterValue.toLowerCase())
+          ).map((obj) => (
             <tr key={obj.id} className="bg-white">
               <td>
                 <p className="py-4 pl-5">{obj.fullName}</p>
