@@ -5,11 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // layout
 import Layout from "@/src/layout/dashboard/Layout";
-import Pagination from "@/src/components/Pagination";
 import Radio from "@/src/components/Radio";
 import Tick from "@/src/assets/tick";
 import CrossRed from "@/src/assets/cross-red";
-import { Employees as MOCK_DATA } from "./data";
+import { Employees as MOCK_DATA } from "@/src/pages/dashboard/data/index";
 
 Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
