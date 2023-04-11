@@ -8,11 +8,11 @@ const Nav = () => {
   return (
     <Container>
       <div className="flex justify-between flex-col md:flex-row">
-        <div className="pl-16 pt-6">
+        <div className="px-16 pt-6">
           {" "}
           <Logo_svg />
         </div>
-        <div className="flex flex-col md:flex-row mt-9 md:mt-0 items-center gap-12">
+        <div className="flex flex-col md:flex-row mt-9 md:mt-0 items-center gap-3 lg:gap-12">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="#">Products</Link>

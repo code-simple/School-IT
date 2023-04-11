@@ -72,10 +72,19 @@ export default function Create_Event() {
       name: "DESCRIPTION",
       selector: (row, i) => row.DESCRIPTION,
       sortable: true,
+      width: "80%",
     },
-    { name: "DATE", selector: (row, i) => row.DATE, sortable: true },
+    {
+      name: "DATE",
+      selector: (row, i) => row.DATE,
+      sortable: true,
+    },
 
-    { name: "ACTION", selector: (row, i) => row.ACTION, sortable: false },
+    {
+      name: "ACTION",
+      selector: (row, i) => row.ACTION,
+      sortable: false,
+    },
   ];
 
   // Stripped Rows Style

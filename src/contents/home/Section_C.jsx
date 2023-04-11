@@ -8,7 +8,7 @@ import Button from "../../components/Button";
 const Section_C = () => {
   return (
     <Container>
-      <div className="grid sm:grid-cols-3 px-4 sm:px-0 justify-center sm:space-y-0 justify-items-center  mt-20">
+      <div className="grid-cols-3 lg:flex px-4 lg:px-0 justify-center lg:space-y-0 justify-items-center  mt-20">
         <div className="shadow-lg mt-3 sm:mt-0 px-32 pt-12 justify-center items-center flex flex-col">
           <Section_c_1 />
           <span className="my-8">Intuitive interface</span>
