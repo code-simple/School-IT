@@ -20,8 +20,9 @@ const Sidebar = () => {
   const router = useRouter();
 
   return (
-    <>
+    <div>
       <div
+        onBlur={() => setMenuClosed(true)}
         className={clsx(
           "bg-[#435260] w-[248px] shrink-0 h-full absolute lg:relative  overflow-y-auto z-20",
           {
@@ -118,7 +119,7 @@ const Sidebar = () => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

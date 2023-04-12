@@ -50,7 +50,7 @@ const Dashboard = () => {
       {/* Table */}
       <div className="overflow-x-auto relative grid">
         <table className="pt-7 border-separate border-spacing-y-2">
-          <thead class="text-base text-[#9F9F9F] text-left">
+          <thead className="text-base text-[#9F9F9F] text-left">
             <tr>
               <th>PERSONAL DETAILS</th>
               <th>DATE</th>

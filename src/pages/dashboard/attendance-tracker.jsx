@@ -37,7 +37,7 @@ export default function Employee() {
       </div>
       <div className="relative overflow-x-auto grid">
         <table className="pt-7 border-separate border-spacing-y-2  ">
-          <thead class="text-[#9F9F9F] text-center border-spacing-x-5 md:text-left font-semibold text-base">
+          <thead className="text-[#9F9F9F] text-center border-spacing-x-5 md:text-left font-semibold text-base">
             <tr>
               <td>PERSONAL DETAILS</td>
               <td>DEPARTMENT</td>
@@ -66,6 +66,7 @@ export default function Employee() {
                       value="present"
                       label="Present"
                       checked={obj.attendence === "present"}
+                      onChange={() => {}}
                     />
                     <Radio
                       id={`absent-${obj.id}`}
@@ -73,6 +74,7 @@ export default function Employee() {
                       value="absent"
                       label="Absent"
                       checked={obj.attendence === "absent"}
+                      onChange={() => {}}
                     />
                   </div>
                 </td>
