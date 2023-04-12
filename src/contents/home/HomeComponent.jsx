@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "@/src/contents/home/navbar";
+import Nav from "@/src/contents/home/Navbar_Home";
 import Hero from "@/src/contents/home/Hero";
 import Section_B from "@/src/contents/home/Section_B";
 import Section_C from "@/src/contents/home/Section_C";

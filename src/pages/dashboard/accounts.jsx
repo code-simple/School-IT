@@ -16,8 +16,8 @@ Accounts.getLayout = function getLayout(page) {
 export default function Accounts() {
   const [toggleTable, setToggleTable] = useState(true);
   return (
-    <div className="flex flex-col pt-14 px-16">
-      <h1 className="text-2xl font-bold pb-16">Account</h1>
+    <div className="flex flex-col lg:pt-14 px-12 lg:px-16">
+      <h1 className="text-2xl font-bold lg:pb-16">Account</h1>
       <div className="grid  gap-6 lg:flex lg:justify-between">
         {/* Card 1 */}
         <div
@@ -31,7 +31,7 @@ export default function Accounts() {
             <Calc />
             <p>Expenses</p>
           </div>
-          <div className="flex text-white pt-7 pl-7 gap-20 pr-8">
+          <div className="flex text-white pt-7 pl-7 gap-20 pr-8 justify-between lg:justify-normal">
             <p>December</p>
             <div className="flex rounded-full border-2 border-white p-2 place-items-center gap-5">
               <p>High</p>
@@ -59,16 +59,16 @@ export default function Accounts() {
         </div>
       </div>
       {/* Expense and Salary buttons */}
-      <div className="flex pl-56 pt-14 ">
+      <div className="flex justify-evenly lg:justify-start lg:pl-56 pt-8 pb-2 lg:pb-0 lg:pt-14">
         <button
           onClick={() => setToggleTable(true)}
-          className="text-xl font-bold focus:text-blue_2 pb-4 focus:border-blue_2 px-32 border-b-2"
+          className="text-base lg:text-xl font-bold focus:text-blue_2 pb-4 focus:border-blue_2 lg:px-32 border-b-2"
         >
           Expenses
         </button>
         <button
           onClick={() => setToggleTable(false)}
-          className="text-xl font-bold focus:text-blue_2 pb-4 focus:border-blue_2 px-32 border-b-2"
+          className="text-base lg:text-xl font-bold focus:text-blue_2 pb-4 focus:border-blue_2 lg:px-32 border-b-2"
         >
           Salaries
         </button>

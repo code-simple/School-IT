@@ -108,7 +108,7 @@ const SalaryTable = () => {
   const customStyles = {
     headRow: {
       style: {
-        background: "#E5E5E5",
+        backgroundColor: "#E5E5E5",
         fontSize: "12px",
         fontWeight: "bold",
         color: "#9F9F9F",
@@ -118,12 +118,12 @@ const SalaryTable = () => {
   };
   return (
     <div className="pb-24">
-      <div className="flex py-8 justify-between">
-        <h1 className="text-xl text-white text-[#000000]/50 font-bold">
+      <div className="grid  lg:flex py-2 lg:py-8 justify-between">
+        <h1 className="text-base lg:text-xl text-white text-black/70 font-bold pb-5 lg:pb-0">
           December Salary Payment Schedule
         </h1>
         <input
-          className="rounded-md px-7 p-2 text-xs text-center"
+          className="rounded-md lg:px-7 p-2  text-xs text-center"
           placeholder="Filter by employee's name"
         />
       </div>

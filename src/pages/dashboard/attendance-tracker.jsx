@@ -18,72 +18,76 @@ export default function Employee() {
   const [filterValue, setFilterValue] = useState("");
 
   return (
-    <div className="grid px-14 pt-14">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold">Attendance Tracker</h1>
-        <div className="flex gap-8 rounded-md">
+    <div className="grid px-4 lg:px-14 pt-14">
+      <div className="grid md:flex justify-between">
+        <h1 className="text-base lg:text-2xl font-bold">Attendance Tracker</h1>
+        <div className="grid md:flex gap-2 md:gap-8 rounded-md">
           <input
             type="text"
             value={filterValue}
             onChange={(e) => setFilterValue(e.target.value)}
-            className="rounded-md px-7 p-2 text-center"
+            className="rounded-md  p-2 text-center"
             placeholder="Filter by employee's name"
           />
           <DatePicker
-            className="rounded-md px-7 p-2 text-center"
+            className="rounded-md p-2 text-center"
             placeholderText="12-01-2019"
           />
         </div>
       </div>
-      <table className="pt-7 border-separate border-spacing-y-2 text-left">
-        <thead class="text-base text-[#9F9F9F]  font-semibold">
-          <tr>
-            <td>PERSONAL DETAILS</td>
-            <td>DEPARTMENT</td>
-            <td>ACTION</td>
-            <td>STATUS</td>
-          </tr>
-        </thead>
-        <tbody>
-          {Employees.filter((employee) =>
-            employee.fullName.toLowerCase().includes(filterValue.toLowerCase())
-          ).map((obj) => (
-            <tr key={obj.id} className="bg-white">
-              <td>
-                <p className="py-4 pl-5">{obj.fullName}</p>
-              </td>
-              <td>
-                <p>{obj.department}</p>
-              </td>
-              <td>
-                <div className="flex gap-14">
-                  <Radio
-                    id={`present-${obj.id}`}
-                    name={`attendence-${obj.id}`}
-                    value="present"
-                    label="Present"
-                    checked={obj.attendence === "present"}
-                  />
-                  <Radio
-                    id={`absent-${obj.id}`}
-                    name={`attendence-${obj.id}`}
-                    value="absent"
-                    label="Absent"
-                    checked={obj.attendence === "absent"}
-                  />
-                </div>
-              </td>
-              <td>
-                <p>{obj.attendence == "present" ? <Tick /> : <CrossRed />}</p>
-              </td>
+      <div className="relative overflow-x-auto grid">
+        <table className="pt-7 border-separate border-spacing-y-2  ">
+          <thead class="text-[#9F9F9F] text-center border-spacing-x-5 md:text-left font-semibold text-base">
+            <tr>
+              <td>PERSONAL DETAILS</td>
+              <td>DEPARTMENT</td>
+              <td>ACTION</td>
+              <td>STATUS</td>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="flex justify-center pt-10 pb-10">
+          </thead>
+          <tbody className="text-base">
+            {Employees.filter((employee) =>
+              employee.fullName
+                .toLowerCase()
+                .includes(filterValue.toLowerCase())
+            ).map((obj) => (
+              <tr key={obj.id} className="bg-white">
+                <td>
+                  <p className="py-4 lg:pl-5">{obj.fullName}</p>
+                </td>
+                <td>
+                  <p>{obj.department}</p>
+                </td>
+                <td>
+                  <div className="flex gap-1 lg:gap-14">
+                    <Radio
+                      id={`present-${obj.id}`}
+                      name={`attendence-${obj.id}`}
+                      value="present"
+                      label="Present"
+                      checked={obj.attendence === "present"}
+                    />
+                    <Radio
+                      id={`absent-${obj.id}`}
+                      name={`attendence-${obj.id}`}
+                      value="absent"
+                      label="Absent"
+                      checked={obj.attendence === "absent"}
+                    />
+                  </div>
+                </td>
+                <td className="pl-5 text-center">
+                  <p>{obj.attendence == "present" ? <Tick /> : <CrossRed />}</p>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex md:justify-center pt-1 md:pt-10 pb-3 lg:pb-10">
         <Link
           href="#"
-          className="bg-[#074279] py-3 px-16 rounded-full text-white text-sm font-bold "
+          className="bg-[#074279] py-2 px-5 md:py-3 lg:px-16 rounded-full text-white text-sm font-bold "
         >
           <span>Submit Attendance Tracker</span>
         </Link>

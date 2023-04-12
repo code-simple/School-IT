@@ -146,7 +146,7 @@ const AccountTable = () => {
   const customStyles = {
     headRow: {
       style: {
-        background: "#E5E5E5",
+        backgroundColor: "#E5E5E5",
         fontSize: "12px",
         fontWeight: "bold",
         color: "#9F9F9F",
@@ -176,7 +176,7 @@ const AccountTable = () => {
       <div className="flex justify-center">
         <button
           onClick={() => {}}
-          className="flex pt-8 pb-20 gap-4 justify-center place-items-center"
+          className="flex pt-8 pb-5 lg:pb-20 gap-4 justify-center place-items-center"
         >
           <h1 className="font-bold">LOAD MORE</h1>
           <Admin_dropdown />

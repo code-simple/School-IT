@@ -39,7 +39,7 @@ export default function Create_Employee() {
   return (
     <div className="flex flex-col">
       <h1 className="text-2xl font-bold pt-14 pl-16">Create new Employee</h1>
-      <div className="flex justify-center pb-16 pt-14">
+      <div className="flex justify-center pb-16 pt-14 ">
         <form
           onSubmit={handleSubmit((data) => {
             console.log(data);
