@@ -11,7 +11,7 @@ const Nav = () => {
   const [menuClosed, setMenuClosed] = useState(true);
   return (
     <Container>
-      <div className="flex justify-center flex-col md:flex-row">
+      <div className="flex justify-between flex-col md:flex-row">
         <div className="pl-16 pt-6">
           <Logo_svg />
         </div>
