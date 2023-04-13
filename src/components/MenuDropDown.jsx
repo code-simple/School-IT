@@ -80,7 +80,7 @@ export default function MyDropdown() {
                       "block px-4 py-2 text-sm": !active,
                     })}
                   >
-                    <button>Sign out</button>
+                    Sign out
                   </div>
                 )}
               </Menu.Item>
