@@ -56,12 +56,12 @@ const LoginWithEmailPass = () => {
               Click the link below to get started
             </p>
             <div className=" flex justify-center">
-              <button
+              <Link
                 className="rounded-full border-white border-2 p-2 lg:px-28  m-10 text-xl "
-                onClick={() => router.push("/signup")}
+                href="/signup"
               >
                 Sign Up
-              </button>
+              </Link>
             </div>
           </div>
         </div>
