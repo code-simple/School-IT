@@ -22,7 +22,6 @@ const Sidebar = () => {
   return (
     <div>
       <div
-        onBlur={() => setMenuClosed(true)}
         className={clsx(
           "bg-[#435260] w-[248px] shrink-0 h-full absolute lg:relative  overflow-y-auto z-20",
           {

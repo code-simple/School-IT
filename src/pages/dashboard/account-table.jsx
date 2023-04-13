@@ -100,14 +100,16 @@ const AccountTable = () => {
 
   const ExpandableComponent = ({ data }) => (
     <div className="flex py-7 flex-col bg-[#F5F4F4]">
-      <div className="flex  pl-8 gap-64 text-xs font-bold text-gray-400 ">
+      <div className="flex  pl-8 gap-10 lg:gap-64 text-xs font-bold text-gray-400 ">
         <p>AMOUNT</p>
         <p>DEPARTMENT</p>
         <p>DETAILS</p>
       </div>
-      <div className="flex  pt-4 pl-8 gap-48">
-        <p className="text-xl whitespace-nowrap font-bold">{data.AMOUNT}</p>
-        <p className="text-xl font-bold">Teaching</p>
+      <div className="flex  pt-4 pl-8 gap-10 lg:gap-48">
+        <p className="text-xs lg:text-xl whitespace-nowrap font-bold">
+          {data.AMOUNT}
+        </p>
+        <p className="text-xs lg:text-xl font-bold">Teaching</p>
         <p className="text-xs pr-8">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
           fugit dolorum corrupti sint? Aut et aliquam magni quia, assumenda

@@ -26,7 +26,7 @@ export default function Employee() {
       </div>
       <div className="relative grid overflow-x-auto text-xs lg:text-base">
         <table className="pt-7 border-separate border-spacing-y-2 text-left ">
-          <thead class="whitespace-nowrap  lg:text-base text-[#9F9F9F]  font-semibold">
+          <thead className="whitespace-nowrap  lg:text-base text-[#9F9F9F]  font-semibold">
             <tr>
               <td>#</td>
               <td>SURNAME</td>

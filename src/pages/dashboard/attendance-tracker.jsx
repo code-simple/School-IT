@@ -21,13 +21,13 @@ export default function Employee() {
     <div className="grid px-4 lg:px-14 pt-14">
       <div className="grid md:flex justify-between">
         <h1 className="text-base lg:text-2xl font-bold">Attendance Tracker</h1>
-        <div className="grid md:flex gap-2 md:gap-8 rounded-md">
+        <div className="grid md:flex gap-2 md:gap-8 rounded-md ">
           <input
             type="text"
             value={filterValue}
             onChange={(e) => setFilterValue(e.target.value)}
             className="rounded-md  p-2 text-center"
-            placeholder="Filter by employee's name"
+            placeholder="Filter by name"
           />
           <DatePicker
             className="rounded-md p-2 text-center"

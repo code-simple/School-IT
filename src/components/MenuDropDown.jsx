@@ -1,14 +1,12 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Admin_dropdown from "../assets/admin_dropdown";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { cn } from "../utils/cn";
+import Link from "next/link";
 
 export default function MyDropdown() {
   return (
-    <Menu as="div" className="inline-block text-left ">
+    <Menu as="div" className="inline-block ">
       <div>
         <Menu.Button className="flex items-center">
           <h3 className="text-base font-bold pl-7 pr-1">Account</h3>
@@ -18,66 +16,62 @@ export default function MyDropdown() {
 
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-100"
+        enter="transition ease-out duration-1500"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
+        leave="transition ease-in duration-1500"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute top-9 right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
+          <div className="grid py-1 ">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
+                <div
+                  className={cn("flex p-3", {
+                    "bg-gray-100 text-gray-900": active,
+                    "block px-4 py-2 text-sm": !active,
+                  })}
                 >
-                  Account settings
-                </a>
+                  <Link href="#">Account settings</Link>
+                </div>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
+                <div
+                  className={cn("flex p-3", {
+                    "bg-gray-100 text-gray-900": active,
+                    "block px-4 py-2 text-sm": !active,
+                  })}
                 >
-                  Support
-                </a>
+                  <Link href="#">Support</Link>
+                </div>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
+                <div
+                  className={cn("flex p-3", {
+                    "bg-gray-100 text-gray-900": active,
+                    "block px-4 py-2 text-sm": !active,
+                  })}
                 >
-                  Contact
-                </a>
+                  <Link href="#">Contact</Link>
+                </div>
               )}
             </Menu.Item>
             <form method="POST" action="#">
               <Menu.Item>
                 {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm"
-                    )}
+                  <div
+                    className={cn("flex p-3", {
+                      "bg-gray-100 text-gray-900": active,
+                      "block px-4 py-2 text-sm": !active,
+                    })}
                   >
-                    Sign out
-                  </button>
+                    <Link href="#">Sign out</Link>
+                  </div>
                 )}
               </Menu.Item>
             </form>

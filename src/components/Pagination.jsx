@@ -3,11 +3,11 @@ import Link from "next/link";
 const Pagination = () => {
   return (
     <div className="flex justify-center rounded-md pb-16 pt-7">
-      <ul class="inline-flex -space-x-px font-semibold">
+      <ul className="inline-flex -space-x-px font-semibold">
         <li>
           <Link
             href="#"
-            class="px-3 py-3 ml-0  font-bold text-gray-500  border-2 border-[#C4C4C4] rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-3 ml-0  font-bold text-gray-500  border-2 border-[#C4C4C4] rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             Previous
           </Link>
@@ -15,7 +15,7 @@ const Pagination = () => {
         <li>
           <Link
             href="#"
-            class="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             1
           </Link>
@@ -23,7 +23,7 @@ const Pagination = () => {
         <li>
           <Link
             href="#"
-            class="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             2
           </Link>
@@ -31,7 +31,7 @@ const Pagination = () => {
         <li>
           <Link
             href="#"
-            class="px-3 py-3  border-2 border-[#C4C4C4] text-gray-500  hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+            className="px-3 py-3  border-2 border-[#C4C4C4] text-gray-500  hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
           >
             3
           </Link>
@@ -39,7 +39,7 @@ const Pagination = () => {
         <li>
           <Link
             href="#"
-            class="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             4
           </Link>
@@ -47,7 +47,7 @@ const Pagination = () => {
         <li>
           <Link
             href="#"
-            class="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-3  text-gray-500  border-2 border-[#C4C4C4] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             5
           </Link>
@@ -55,7 +55,7 @@ const Pagination = () => {
         <li>
           <Link
             href="#"
-            class="px-3 py-3  text-gray-500  border-2 font-bold border-[#C4C4C4] rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="px-3 py-3  text-gray-500  border-2 font-bold border-[#C4C4C4] rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             Next
           </Link>

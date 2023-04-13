@@ -12,9 +12,9 @@ const Nav = () => {
   return (
     <Container>
       <div className="flex justify-between flex-col md:flex-row">
-        <div className="pl-16 pt-6">
+        <Link href="/" className="pl-16 pt-6">
           <Logo_svg />
-        </div>
+        </Link>
         <button
           className="text-3xl block md:hidden  text-primary"
           onClick={() => setMenuClosed((closed) => !closed)}
