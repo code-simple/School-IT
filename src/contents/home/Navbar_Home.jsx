@@ -16,7 +16,7 @@ const Nav = () => {
             <Logo_svg />
           </Link>
           <button
-            className="text-3xl block md:hidden  text-primary"
+            className="text-3xl block md:hidden pr-2 text-primary"
             onClick={() => setMenuClosed((closed) => !closed)}
           >
             {menuClosed ? <Burger /> : <Close />}
