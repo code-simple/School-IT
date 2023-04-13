@@ -71,20 +71,19 @@ export default function MyDropdown() {
                 </div>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item onClick={() => signOutNow()}>
-                {({ active }) => (
-                  <div
-                    className={cn("flex p-3", {
-                      "bg-gray-100 text-gray-900": active,
-                      "block px-4 py-2 text-sm": !active,
-                    })}
-                  >
-                    Sign out
-                  </div>
-                )}
-              </Menu.Item>
-            </form>
+
+            <Menu.Item onClick={() => signOutNow()}>
+              {({ active }) => (
+                <div
+                  className={cn("flex p-3", {
+                    "bg-gray-100 text-gray-900": active,
+                    "block px-4 py-2 text-sm": !active,
+                  })}
+                >
+                  Sign out
+                </div>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>
