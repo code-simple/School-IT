@@ -32,7 +32,7 @@ const LoginWithEmailPass = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        router.push("/dashboard");
         // ...
       })
       .catch((error) => {
@@ -102,11 +102,7 @@ const LoginWithEmailPass = () => {
               </div>
 
               <div className="flex py-5">
-                <button
-                  disabled={!isValid}
-                  onClick={() => router.push("/dashboard")}
-                  className=" whitespace-nowrap bg-lightred px-20 py-2  text-white rounded-full disabled:bg-slate-300"
-                >
+                <button className=" whitespace-nowrap bg-lightred px-20 py-2  text-white rounded-full disabled:bg-slate-300">
                   Sign in
                 </button>
               </div>
