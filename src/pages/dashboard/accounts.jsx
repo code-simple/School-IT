@@ -17,15 +17,15 @@ export default function Accounts() {
   const [toggleTable, setToggleTable] = useState(true);
   return (
     <div className="flex flex-col lg:pt-14 px-12 lg:px-16">
-      <h1 className="text-2xl font-bold lg:pb-16">Account</h1>
-      <div className="grid  gap-6 lg:flex lg:justify-between">
+      <h1 className="text-2xl font-bold pb-8 lg:pb-16">Account</h1>
+      <div className="gap-6 grid md:flex justify-center lg:justify-between">
         {/* Card 1 */}
         <div
-          className=" rounded-xl"
-          style={{
-            "background-image":
-              "linear-gradient(198.98deg, #AF2233 -22.31%, #000000 -15.88%, #2D4053 10.76%, #000000 45.95%, #5169BF 87.21%)",
-          }}
+          className="bg-gradient-to-b text-white rounded-xl w-[302px] h-[195px] from-[#000000] to-[#5169BF]"
+          // style={{
+          //   backgroundImage:
+          //     "linear-gradient(198.98deg, #AF2233 -22.31%, #000000 -15.88%, #2D4053 10.76%, #000000 45.95%, #5169BF 87.21%)",
+          // }}
         >
           <div className="flex pt-8 pl-8 gap-4 text-white place-items-center">
             <Calc />
@@ -38,15 +38,15 @@ export default function Accounts() {
               <ArrowUp />
             </div>
           </div>
-          <h1 className="pt-4 pl-8 pb-8 text-white text-3xl">₦ 300,000</h1>
+          <h1 className=" pl-8 pb-8 text-white text-3xl">₦ 300,000</h1>
         </div>
         {/* Card 2 */}
         <div
-          className="rounded-xl"
-          style={{
-            "background-image":
-              "linear-gradient(198.98deg, #AF2233 -22.31%, #000000 -15.88%, #2D4053 10.76%, #000000 45.95%, #5169BF 87.21%)",
-          }}
+          className="rounded-xl bg-gradient-to-b text-white  w-[302px] h-[195px] from-[#000000] to-[#5169BF]"
+          // style={{
+          //   "background-image":
+          //     "linear-gradient(198.98deg, #AF2233 -22.31%, #000000 -15.88%, #2D4053 10.76%, #000000 45.95%, #5169BF 87.21%)",
+          // }}
         >
           <div className="flex pt-8 pl-8 gap-4 text-white place-items-center">
             <Bill />

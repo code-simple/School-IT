@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Logo_svg from "@/src/assets/logo_svg";
 import Link from "next/link";
 import Container from "@/src/components/Container";
-import Button from "@/src/components/Button";
 import Close from "@/src/assets/Close";
 import Burger from "@/src/assets/Burger";
 import clsx from "clsx";
@@ -11,16 +10,19 @@ const Nav = () => {
   const [menuClosed, setMenuClosed] = useState(true);
   return (
     <Container>
-      <div className="flex justify-between flex-col md:flex-row">
-        <Link href="/" className="pl-16 pt-6">
-          <Logo_svg />
-        </Link>
-        <button
-          className="text-3xl block md:hidden  text-primary"
-          onClick={() => setMenuClosed((closed) => !closed)}
-        >
-          {menuClosed ? <Burger /> : <Close />}
-        </button>
+      <div className="flex md:justify-between flex-col md:flex-row">
+        <div className="flex justify-between">
+          <Link href="/" className="lg:pl-16 pl-8 pt-4 items-center  lg:pt-6">
+            <Logo_svg />
+          </Link>
+          <button
+            className="text-3xl block md:hidden  text-primary"
+            onClick={() => setMenuClosed((closed) => !closed)}
+          >
+            {menuClosed ? <Burger /> : <Close />}
+          </button>
+        </div>
+
         <ul
           className={clsx(
             "md:mr-14 flex justify-center font-medium text-center px-8 sm:px-4 md:px-0 space-y-4 md:space-y-0  md:mt-0 items-center flex-col md:flex-row",

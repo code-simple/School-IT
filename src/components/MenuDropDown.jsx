@@ -3,8 +3,18 @@ import { Menu, Transition } from "@headlessui/react";
 import Admin_dropdown from "../assets/admin_dropdown";
 import { cn } from "../utils/cn";
 import Link from "next/link";
+import { signOut } from "firebase/auth";
+import { auth } from "./config/firebase";
+import { useRouter } from "next/router";
 
 export default function MyDropdown() {
+  const router = useRouter();
+
+  const signOutNow = async () => {
+    await signOut(auth);
+    router.push("/");
+  };
+
   return (
     <Menu as="div" className="inline-block ">
       <div>
@@ -62,7 +72,7 @@ export default function MyDropdown() {
               )}
             </Menu.Item>
             <form method="POST" action="#">
-              <Menu.Item>
+              <Menu.Item onClick={() => signOutNow()}>
                 {({ active }) => (
                   <div
                     className={cn("flex p-3", {
@@ -70,7 +80,7 @@ export default function MyDropdown() {
                       "block px-4 py-2 text-sm": !active,
                     })}
                   >
-                    <Link href="#">Sign out</Link>
+                    <button>Sign out</button>
                   </div>
                 )}
               </Menu.Item>

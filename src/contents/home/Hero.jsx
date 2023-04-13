@@ -19,7 +19,7 @@ const Hero = () => {
           </h1>
           <Link
             href="/signup"
-            className="bg-lightred text-lg font-bold py-2 lg:px-14 px-7 whitespace-nowrap  text-white rounded-full disabled:bg-slate-300"
+            className="bg-lightred text-lg font-bold py-2 lg:px-14 px-7 whitespace-nowrap  text-white rounded-full hover:bg-white hover:text-lightred border-2 hover:border-lightred"
           >
             Get Started
           </Link>

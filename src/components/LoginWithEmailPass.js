@@ -45,79 +45,91 @@ const LoginWithEmailPass = () => {
     loginWithEmailPassword();
   };
   return (
-    <div className="grid md:grid-cols-12">
-      <div className="md:col-span-4">
-        <div className="h-full pt-80 hidden md:block text-white bg-lightred max-w-[570px] ">
-          <h1 className="flex justify-center text-xl lg:text-3xl text-white  font-semibold">
-            Not Signed Up Yet?
-          </h1>
-          <p className="flex whitespace-nowrap  text-xs lg:text-lg mt-5 justify-center lg:text-center">
-            Click the link below to get started
-          </p>
-          <div className=" flex justify-center">
-            <button
-              className="rounded-full border-white border-2 p-2 lg:px-28  m-10 text-xl "
-              onClick={() => router.push("/signup")}
-            >
-              Sign Up
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="col-span-8 h-screen p-16">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Link href="/">
-            <Logo_svg />
-          </Link>
-          <div className="flex flex-col py-12 ">
-            <div className="my-4">
-              <h1 className="whitespace-nowrap  pt-12 text-4xl font-semibold">
-                Access Account
-              </h1>
-              <p className=" text-sm pt-8 pb-8 whitespace-nowrap">
-                Gain access to your account and explore!
-              </p>
-              <input
-                {...register("email")}
-                className="w-96 lg:w-[638px] h-10 px-3 border py-3 border-lightred border-opacity-70 outline-lightred rounded-md"
-                type="email"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {errors.email && <p>{errors.email.message}</p>}
-            </div>
-            <div className="my-4">
-              <input
-                {...register("password")}
-                className="w-96 lg:w-[638px] h-10 px-3 border py-3 border-lightred border-opacity-70 outline-lightred rounded-md"
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {errors.password && <p>{errors.password.message}</p>}
-            </div>
-
-            <div className="flex py-5">
-              <button className=" whitespace-nowrap bg-lightred px-20 py-2  text-white rounded-full">
-                Sign in
+    <Container>
+      <div className="grid md:grid-cols-12 overflow-y-hidden">
+        <div className="md:col-span-4">
+          <div className="h-full pt-80 hidden md:block text-white bg-lightred max-w-[570px] ">
+            <h1 className="flex justify-center text-xl lg:text-3xl text-white  font-semibold">
+              Not Signed Up Yet?
+            </h1>
+            <p className="flex whitespace-nowrap  text-xs lg:text-lg mt-5 justify-center lg:text-center">
+              Click the link below to get started
+            </p>
+            <div className=" flex justify-center">
+              <button
+                className="rounded-full border-white border-2 p-2 lg:px-28  m-10 text-xl "
+                onClick={() => router.push("/signup")}
+              >
+                Sign Up
               </button>
             </div>
-            <span className="text-sm py-5 md:hidden block whitespace-nowrap">
-              Click the link below to get started{" "}
-              <Link href="/signin">Sign in</Link>{" "}
-              <a href="#" className="font-bold">
-                Sigin In
-              </a>
-            </span>
-            <div className="text-sm whitespace-nowrap">
-              <span>
-                Forgot password? <Link href="#">Click here</Link>
-              </span>
-            </div>
           </div>
-        </form>
+        </div>
+        <div className="col-span-8 h-screen p-5 lg:p-16 ">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid justify-center"
+          >
+            <Link href="/">
+              <Logo_svg />
+            </Link>
+            <div className="flex flex-col py-12 pl-6 lg:pl-0">
+              <div className="my-4">
+                <h1 className="whitespace-nowrap  pt-12 text-4xl font-semibold">
+                  Access Account
+                </h1>
+                <p className=" text-sm pt-8 pb-8 lg:whitespace-nowrap">
+                  Gain access to your account and explore!
+                </p>
+                <input
+                  {...register("email")}
+                  className="w-80 lg:w-[638px] h-10 px-3 border py-3 border-lightred border-opacity-70 outline-lightred rounded-md"
+                  type="email"
+                  placeholder="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {errors.email && <p>{errors.email.message}</p>}
+              </div>
+              <div className="my-4">
+                <input
+                  {...register("password")}
+                  className="w-80 lg:w-[638px] h-10 px-3 border py-3 border-lightred border-opacity-70 outline-lightred rounded-md"
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {errors.password && <p>{errors.password.message}</p>}
+              </div>
+
+              <div className="flex py-5">
+                <button
+                  disabled={!isValid}
+                  onClick={() => router.push("/dashboard")}
+                  className=" whitespace-nowrap bg-lightred px-20 py-2  text-white rounded-full disabled:bg-slate-300"
+                >
+                  Sign in
+                </button>
+              </div>
+              <span className="text-sm py-5 md:hidden block lg:whitespace-nowrap">
+                Click the link below to get started{" "}
+                <Link href="/signin">Sign in</Link>{" "}
+                <a href="#" className="font-bold">
+                  Sigin In
+                </a>
+              </span>
+              <div className="text-sm whitespace-nowrap">
+                <span>
+                  Forgot password?{" "}
+                  <Link href="#" className="font-bold text-[#3B5998]">
+                    Click here
+                  </Link>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

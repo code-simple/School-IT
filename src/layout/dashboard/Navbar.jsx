@@ -25,12 +25,12 @@ const Navbar = () => {
         </div>
         <div className="flex justify-center items-center ">
           <Image src={Avatar} alt="avatar" />
-          <a
+          <div
             className="flex items-center cursor-pointer"
             onClick={handlechange}
           >
             {MyDropdown()}
-          </a>
+          </div>
         </div>
         {/* {view && <h1>hellooo</h1>} */}
       </div>

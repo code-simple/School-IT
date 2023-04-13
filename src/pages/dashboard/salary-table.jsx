@@ -1,85 +1,14 @@
 import DataTable from "react-data-table-component";
-import Link from "next/link";
+import Salaries from "@/src/contents/dashboard/data/salaries";
+import { useState } from "react";
 
 const SalaryTable = () => {
+  const [filter, setFilter] = useState("");
   const PayBtn = () => (
     <button className="font-bold text-white px-4 py-2 rounded-full bg-[#074279]">
       Pay
     </button>
   );
-
-  const data = [
-    {
-      ID: 1001,
-      NAME: "Joshua Hungevu",
-      DEPARTMENT: "Administration",
-      AMOUNT: "₦ 30000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1002,
-      NAME: "Adefarasin Emmanuel",
-      DEPARTMENT: "Teaching",
-      AMOUNT: "₦ 90000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1003,
-      NAME: "Chukuma Ejiofor",
-      DEPARTMENT: "Teaching",
-      AMOUNT: "₦ 55000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1004,
-      NAME: "Travolta John",
-      DEPARTMENT: "Administration",
-      AMOUNT: "₦ 10000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1005,
-      NAME: "Mckein Cynthia",
-      DEPARTMENT: "Administration",
-      AMOUNT: "₦ 35000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1006,
-      NAME: "Travolta John",
-      DEPARTMENT: "Teaching",
-      AMOUNT: "₦ 30000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1007,
-      NAME: "Rush Lillian",
-      DEPARTMENT: "Security",
-      AMOUNT: "₦ 90000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1008,
-      NAME: "Samantha Agboluade",
-      DEPARTMENT: "Administration",
-      AMOUNT: "₦ 55000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1009,
-      NAME: "Michael Blank",
-      DEPARTMENT: "Security",
-      AMOUNT: "₦ 10000.00",
-      ACTION: PayBtn(),
-    },
-    {
-      ID: 1010,
-      NAME: "Travis Abdullahi",
-      DEPARTMENT: "Administration",
-      AMOUNT: "₦ 35000.00",
-      ACTION: PayBtn(),
-    },
-  ];
 
   // SELECTOR ACCEPTS FUNCTION NOT STRING
   const columns = [
@@ -92,7 +21,7 @@ const SalaryTable = () => {
     },
 
     { name: "AMOUNT", selector: (row, i) => row.AMOUNT, sortable: true },
-    { name: "ACTION", selector: (row, i) => row.ACTION, sortable: false },
+    { name: "ACTION", selector: (row, i) => PayBtn(), sortable: false },
   ];
 
   // Stripped Rows Style
@@ -119,17 +48,21 @@ const SalaryTable = () => {
   return (
     <div className="pb-24">
       <div className="grid  lg:flex py-2 lg:py-8 justify-between">
-        <h1 className="text-base lg:text-xl text-white text-black/70 font-bold pb-5 lg:pb-0">
+        <h1 className="text-base lg:text-xl  text-black/50 font-bold pb-5 lg:pb-0">
           December Salary Payment Schedule
         </h1>
         <input
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
           className="rounded-md lg:px-7 p-2  text-xs text-center"
           placeholder="Filter by employee's name"
         />
       </div>
       <DataTable
         columns={columns}
-        data={data}
+        data={Salaries.filter((employee) =>
+          employee.NAME.toLowerCase().includes(filter.toLowerCase())
+        )}
         conditionalRowStyles={conditionalRowStyles}
         customStyles={customStyles}
       />

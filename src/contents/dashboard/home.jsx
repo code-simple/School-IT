@@ -10,13 +10,13 @@ import T_img5 from "@/src/assets/table_img5.png";
 const Dashboard = () => {
   return (
     <div className="grid px-10 lg:px-16">
-      <div className="flex justify-between  pt-16">
+      <div className="flex justify-between items-center pt-8 lg:pt-16">
         <h1 className="text-2xl font-bold">Summary</h1>
         <Admin_dropdown className="-rotate-90" />
       </div>
-      <p className="pt-7">02-January-2020</p>
+      <p className="pt-4 lg:pt-7">02-January-2020</p>
       {/* Cards */}
-      <div className="grid gap-3 lg:flex pt-12 md:justify-evenly">
+      <div className="grid gap-3 lg:flex pt-6 lg:pt-12 md:justify-evenly">
         <div className="flex flex-col w-72 h-40 bg-white shadow-2xl rounded-xl">
           <span className="bg-[#1C33A7] w-[110px] mt-5 ml-5 bg-opacity-30 rounded-full text-center text-xs">
             Attendance
