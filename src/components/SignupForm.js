@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "@/src/components/config/firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -8,8 +8,11 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import Logo_svg from "../assets/logo_svg";
 import Link from "next/link";
+import LoadingSVG from "../assets/loading";
 
 const SignupForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const router = useRouter();
 
   //Schema
@@ -18,8 +21,8 @@ const SignupForm = () => {
     lastname: Yup.string().required("Field is required"),
     email: Yup.string().email("Invalid Email").required("Email is Required"),
     password: Yup.string()
-      .required("Password is required")
-      .min(8, "Minimum 8 digits"),
+      .min(6, "Atleast 6 characters")
+      .required("Password is required"),
     agree: Yup.boolean().oneOf(
       [true],
       "You must accept the terms and conditions"
@@ -38,7 +41,7 @@ const SignupForm = () => {
     setError,
     register,
     watch,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
@@ -52,6 +55,7 @@ const SignupForm = () => {
 
   // Create new user, add data to firestore
   const onSubmit = () => {
+    setIsSubmitting(!isSubmitting);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -67,7 +71,8 @@ const SignupForm = () => {
         // Implement Switch case for all errors related to email
         setError("email", { type: "custom", message: error.code });
         // ..
-      });
+      })
+      .finally(() => setIsSubmitting(!isSubmitting));
   };
 
   const addDetails = async (uid) => {
@@ -169,9 +174,16 @@ const SignupForm = () => {
             </div>
 
             <div className="text-center">
-              <button className="bg-lightred px-20 py-2 mb-20  text-white rounded-full disabled:bg-slate-300">
-                Submit
-              </button>
+              {isSubmitting ? (
+                <LoadingSVG />
+              ) : (
+                <button
+                  disabled={isSubmitting}
+                  className="bg-lightred px-20 py-2 mb-20  text-white rounded-full disabled:bg-slate-300"
+                >
+                  Submit
+                </button>
+              )}
             </div>
           </div>
         </form>
