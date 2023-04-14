@@ -4,7 +4,7 @@ This is a nextJs project with responsive UI for Desktop, Tablet and Mobile devic
 
 It has dashboard for its users having different areas e.g Accounts, Events etc
 
-🔴Live : [Deployed @ Vercel](<[](https://school-kappa-ruddy.vercel.app/)>)
+🔴Live : [Deployed @ Vercel](https://school-kappa-ruddy.vercel.app/)
 
 ### Dependencies:
 
