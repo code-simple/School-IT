@@ -29,6 +29,6 @@ It has dashboard for its users having different areas e.g Accounts, Events etc
 
 ### Dashboard
 
-<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard.png" alt="s3" >
+<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard2.png" alt="s3" >
 
-<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard2.png" alt="s4">
+<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard.png" alt="s4">

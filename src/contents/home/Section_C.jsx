@@ -30,7 +30,7 @@ const Section_C = () => {
       </div>
       <div className="flex justify-center pt-14">
         <Link
-          href="/Signup"
+          href="/signup"
           className="bg-lightred text-lg font-bold py-2 lg:px-14 px-7 whitespace-nowrap  text-white rounded-full hover:bg-white hover:text-lightred border-2 hover:border-lightred"
         >
           Get Started

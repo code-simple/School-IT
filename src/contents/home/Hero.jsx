@@ -18,7 +18,7 @@ const Hero = () => {
             A student-centered education and experiential learning platform
           </h1>
           <Link
-            href="/Signup"
+            href="/signup"
             className="bg-lightred text-lg font-bold py-2 lg:px-14 px-7 whitespace-nowrap  text-white rounded-full hover:bg-white hover:text-lightred border-2 hover:border-lightred"
           >
             Get Started

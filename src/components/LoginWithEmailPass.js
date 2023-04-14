@@ -61,7 +61,7 @@ const LoginWithEmailPass = () => {
             <div className=" flex justify-center">
               <Link
                 className="rounded-full border-white border-2 p-2 lg:px-28  m-10 text-xl "
-                href="/Signup"
+                href="/signup"
               >
                 Sign Up
               </Link>
