@@ -11,14 +11,20 @@ It has dashboard for its users having different areas e.g Accounts, Events etc
 - React Hook Form
 - HeadlesUi
 
-###Screenshots
-#####Home
+### Screenshots
+
+##### Home
+
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/home.png" alt="s0" >
-#####Sign Up
+
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/signup.png" alt="s1" >
-#####Sign In
+
+##### Sign In
+
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/signin.png" alt="s2" >
-#####Dashboard
+
+##### Dashboard
+
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard.png" alt="s3" >
 
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard2.png" alt="s4">
