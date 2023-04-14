@@ -15,6 +15,6 @@ Screenshots
 
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/home.png" alt="s0" width="650px" height="1200px">
 <img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/signup.png" alt="s1" width="650px" height="1200px">
-<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/signin.png" alt="s2" width="650px" height="1200px">
-<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard.png" alt="s3" width="650px" height="1200px">
-<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard2.png" alt="s4" width="650px" height="1200px">
+<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/signin.png" alt="s2" width="400px" height="800px">
+<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard.png" alt="s3" width="400px" height="800px">
+<img src="https://github.com/code-simple/firebase-login/blob/main/screenshots/dashboard2.png" alt="s4" width="400px" height="800px">
