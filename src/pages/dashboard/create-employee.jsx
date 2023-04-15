@@ -5,6 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Cross from "@/src/assets/cross";
 import Link from "next/link";
+import { v4 as uuidv4 } from "uuid";
+import { doc, setDoc } from "firebase/firestore";
+import LoadingSVG from "@/src/assets/loading";
+import { db } from "@/src/components/config/firebase";
 
 Create_Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -30,20 +34,39 @@ export default function Create_Employee() {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    watch,
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
   });
+  // Watch
+  const surname = watch("surname");
+  const firstname = watch("firstname");
+  const email = watch("email");
+  const department = watch("department");
+  const gender = watch("gender");
+  const salary = watch("salary");
+
+  const onSubmit = async () => {
+    const uuid = uuidv4();
+    await setDoc(doc(db, "employees", uuid), {
+      uuid,
+      surname,
+      firstname,
+      email,
+      department,
+      gender,
+      salary,
+    });
+  };
 
   return (
     <div className="flex flex-col">
       <h1 className="text-2xl font-bold pt-14 pl-16">Create new Employee</h1>
       <div className="flex justify-center pb-16 pt-14 ">
         <form
-          onSubmit={handleSubmit((data) => {
-            console.log(data);
-          })}
+          onSubmit={handleSubmit(onSubmit)}
           className="bg-white rounded-md  pl-8 pr-8 pb-7 "
         >
           <div className="pt-8 pl-8 pb-14">
@@ -160,10 +183,18 @@ export default function Create_Employee() {
               <p className="text-red-400">{errors.salary.message}</p>
             )}
 
-            <div className="flex justify-evenly pt-9 gap-12">
-              <button className="bg-[#074279] text-white text-base font-semibold rounded-full py-2 px-36">
-                Create
-              </button>
+            <div className="flex justify-evenly ">
+              {isSubmitting ? (
+                <div className="flex justify-center px-[120px]">
+                  <LoadingSVG currentColor="#175be0" />
+                </div>
+              ) : (
+                <div className="pt-9">
+                  <button className="bg-[#074279] text-white text-base font-semibold rounded-full py-2 px-36">
+                    Create
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </form>

@@ -4,6 +4,7 @@ import Link from "next/link";
 // layout
 import Layout from "@/src/layout/dashboard/Layout";
 import Pagination from "@/src/components/Pagination";
+import Employees from "@/src/contents/dashboard/data";
 
 Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -37,209 +38,24 @@ export default function Employee() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">1</td>
-              <td>
-                <p>Aderinsola </p>
-              </td>
-              <td>
-                <p>Emmanuel</p>
-              </td>
-              <td>
-                <p>Teaching</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link
-                  href="/dashboard/manage-employee"
-                  className="font-bold bg text-[#074279]"
-                >
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">2</td>
-              <td>
-                <p>Chukwuma</p>
-              </td>
-              <td>
-                <p>Ugochukwu</p>
-              </td>
-              <td>
-                <p>Administration</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">3</td>
-              <td>
-                <p>Taiwo</p>
-              </td>
-              <td>
-                <p>Sunday</p>
-              </td>
-              <td>
-                <p>Teaching</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">4</td>
-              <td>
-                <p>Adefarasin</p>
-              </td>
-              <td>
-                <p>Adewumi</p>
-              </td>
-              <td>
-                <p>Teaching</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">5</td>
-              <td>
-                <p>Afolayan</p>
-              </td>
-              <td>
-                <p>Funmi</p>
-              </td>
-              <td>
-                <p>Administration</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">6</td>
-              <td>
-                <p>Chima</p>
-              </td>
-              <td>
-                <p>Uche</p>
-              </td>
-              <td>
-                <p>Security</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">7</td>
-              <td>
-                <p>Afenifere</p>
-              </td>
-              <td>
-                <p>Esther</p>
-              </td>
-              <td>
-                <p>Security</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">8</td>
-              <td>
-                <p>Johnson</p>
-              </td>
-              <td>
-                <p>Stephen</p>
-              </td>
-              <td>
-                <p>Teaching</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">9</td>
-              <td>
-                <p>Owolabi</p>
-              </td>
-              <td>
-                <p>Johanna</p>
-              </td>
-              <td>
-                <p>Administration</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5">10</td>
-              <td>
-                <p>Abdullahi</p>
-              </td>
-              <td>
-                <p>Taofeeq</p>
-              </td>
-              <td>
-                <p>Teaching</p>
-              </td>
-              <td>
-                <p>02 - 01 - 2008</p>
-              </td>
-              <td>
-                <Link href="#" className="font-bold bg text-[#074279]">
-                  Manage
-                </Link>
-              </td>
-            </tr>
+            {/* MOCK DATA */}
+            {Employees.map((employee) => (
+              <tr className="bg-white">
+                <td className="py-4 pl-5">{employee.id}</td>
+                <td>{employee.surname}</td>
+                <td>{employee.firstname}</td>
+                <td>{employee.department}</td>
+                <td>{employee.created_on}</td>
+                <td>
+                  <Link
+                    href="/dashboard/manage-employee"
+                    className="font-bold bg text-[#074279]"
+                  >
+                    {employee.ACTION}
+                  </Link>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

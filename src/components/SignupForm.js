@@ -11,8 +11,6 @@ import Link from "next/link";
 import LoadingSVG from "../assets/loading";
 
 const SignupForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const router = useRouter();
 
   //Schema
@@ -41,7 +39,7 @@ const SignupForm = () => {
     setError,
     register,
     watch,
-    formState: { errors, isValid },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
@@ -54,9 +52,8 @@ const SignupForm = () => {
   const password = watch("password");
 
   // Create new user, add data to firestore
-  const onSubmit = () => {
-    setIsSubmitting(!isSubmitting);
-    createUserWithEmailAndPassword(auth, email, password)
+  const onSubmit = async () => {
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
@@ -68,11 +65,10 @@ const SignupForm = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        // Implement Switch case for all errors related to email
-        setError("email", { type: "custom", message: error.code });
+        // All errors are covered by yup, only duplicate email error is handled by firebase
+        setError("email", { type: "custom", message: "Email already in Use" });
         // ..
-      })
-      .finally(() => setIsSubmitting(!isSubmitting));
+      });
   };
 
   const addDetails = async (uid) => {
@@ -175,7 +171,7 @@ const SignupForm = () => {
 
             <div className="text-center">
               {isSubmitting ? (
-                <LoadingSVG />
+                <LoadingSVG currentColor="#fe718d" />
               ) : (
                 <button
                   disabled={isSubmitting}

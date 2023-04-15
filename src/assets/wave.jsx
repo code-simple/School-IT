@@ -3,8 +3,10 @@ import * as React from "react";
 function Wave(props) {
   return (
     <svg
-      width="1440"
+      width="1536"
       height="357"
+      // width="1440"
+      // height="357"
       viewBox="0 0 1440 357"
       fill="none"
       {...props}

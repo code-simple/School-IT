@@ -6,8 +6,8 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <Container>
-      <div className="grid sm:grid-cols-3 mt-20 px-12">
-        <div className="flex justify-center align-middle pb-8 sm:pb-0">
+      <div className="grid sm:grid-cols-3 mt-20  px-12">
+        <div className="flex justify-evenly lg:justify-center align-middle pb-8 sm:pb-0">
           <Logo_svg />
         </div>
         <div className="inline-flex flex-col justify-center text-center gap-6 text-2xl text-lightred">

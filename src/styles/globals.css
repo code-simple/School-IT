@@ -21,7 +21,7 @@ p {
     clip-path: polygon(100% 0, 99% 100%, 0 0);
   }
 
-  /* Loading svg style */
+  /* Dashboard Loading Page */
   #loading {
     position: absolute;
     left: calc(50% - 100px);
