@@ -20,6 +20,7 @@ const LoginWithEmailPass = () => {
     register,
     watch,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting, isSubmitted },
   } = useForm({
     resolver: yupResolver(schema),
@@ -43,6 +44,24 @@ const LoginWithEmailPass = () => {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
+      switch (errorCode) {
+        case "auth/wrong-password":
+          setError("password", {
+            type: "custom",
+            message: "Wrong password",
+          });
+          break;
+        case "auth/user-not-found":
+          setError("email", {
+            type: "custom",
+            message: "User not found",
+          });
+          break;
+      }
+      // setError("email", {
+      //   type: "custom",
+      //   message: error.code,
+      // });
     } finally {
     }
   };
@@ -90,7 +109,9 @@ const LoginWithEmailPass = () => {
                   type="email"
                   placeholder="Email"
                 />
-                {errors.email && <p>{errors.email.message}</p>}
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
               </div>
               <div className="my-4">
                 <input
@@ -99,11 +120,13 @@ const LoginWithEmailPass = () => {
                   type="password"
                   placeholder="Password"
                 />
-                {errors.password && <p>{errors.password.message}</p>}
+                {errors.password && (
+                  <p className="text-red-500">{errors.password.message}</p>
+                )}
               </div>
 
               <div className="flex py-5">
-                {isSubmitting || isSubmitted ? (
+                {isSubmitting ? (
                   <LoadingSVG currentcolor="#fe718d" />
                 ) : (
                   <button
