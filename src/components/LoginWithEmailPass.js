@@ -104,7 +104,7 @@ const LoginWithEmailPass = () => {
 
               <div className="flex py-5">
                 {isSubmitting || isSubmitted ? (
-                  <LoadingSVG currentColor="#fe718d" />
+                  <LoadingSVG currentcolor="#fe718d" />
                 ) : (
                   <button
                     type="submit"

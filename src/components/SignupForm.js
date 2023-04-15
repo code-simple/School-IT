@@ -171,7 +171,7 @@ const SignupForm = () => {
 
             <div className="text-center">
               {isSubmitting ? (
-                <LoadingSVG currentColor="#fe718d" />
+                <LoadingSVG currentcolor="#fe718d" />
               ) : (
                 <button
                   disabled={isSubmitting}

@@ -21,7 +21,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
       >
         <animate
           attributeName="opacity"
@@ -39,7 +39,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(30 50 50)"
       >
         <animate
@@ -58,7 +58,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(60 50 50)"
       >
         <animate
@@ -77,7 +77,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(90 50 50)"
       >
         <animate
@@ -96,7 +96,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(120 50 50)"
       >
         <animate
@@ -115,7 +115,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(150 50 50)"
       >
         <animate
@@ -134,7 +134,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(180 50 50)"
       >
         <animate
@@ -153,7 +153,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(210 50 50)"
       >
         <animate
@@ -172,7 +172,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(240 50 50)"
       >
         <animate
@@ -191,7 +191,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(270 50 50)"
       >
         <animate
@@ -210,7 +210,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(300 50 50)"
       >
         <animate
@@ -229,7 +229,7 @@ function LoadingSVG(props) {
         ry={6}
         width={6}
         height={12}
-        fill={props.currentColor}
+        fill={props.currentcolor}
         transform="rotate(330 50 50)"
       >
         <animate

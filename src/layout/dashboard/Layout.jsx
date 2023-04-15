@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { createContext } from "react";
-
 import Authenticated from "@/src/components/Authenticated";
 
 export const UserContext = createContext({});
-// var user = firebase.auth().currentUser;
 
 export default function Layout({ children }) {
+  // Boolean useContext for BreadCrumb / Close button
   const [menuClosed, setMenuClosed] = useState(true);
 
   return (

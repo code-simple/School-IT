@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@/src/layout/dashboard/Layout";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Cross from "@/src/assets/cross";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "@/src/components/config/firebase";
+import LoadingSVG from "@/src/assets/loading";
 
 Manage_Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -26,24 +37,86 @@ export default function Manage_Employee() {
     gender: Yup.string().min(1, "Select Gender"),
     salary: Yup.string().required("Field is required"),
   });
+  const router = useRouter();
+  const [userData, setUserData] = useState();
+  const [loading, setLoading] = useState(false);
+  // Router Query to get specific uuid
+  const uuid = router.query.uuid;
+  // Getting values for specific inputs
+  const docRef = doc(db, "employees", uuid);
 
+  //Handle Sumbit
   const {
     handleSubmit,
+    setValue,
+    watch,
     register,
     formState: { errors },
   } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
   });
+  const getDocument = async () => {
+    const data = await getDoc(docRef);
+    setUserData(data.data());
+    setValue("surname", data.data()["surname"]);
+    setValue("firstname", data.data()["firstname"]);
+    setValue("email", data.data()["email"]);
+    setValue("department", data.data()["department"]);
+    setValue("gender", data.data()["gender"]);
+    setValue("salary", data.data()["salary"]);
+  };
+  // watches
 
+  const surname = watch("surname");
+  const firstname = watch("firstname");
+  const email = watch("email");
+  const department = watch("department");
+  const gender = watch("gender");
+  const salary = watch("salary");
+
+  // Update Function
+
+  const update = async () => {
+    setLoading(true);
+    try {
+      const data = await updateDoc(doc(db, "employees", uuid), {
+        surname,
+        firstname,
+        email,
+        department,
+        gender,
+        salary,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Delete Function
+  const deleteDetail = async () => {
+    setLoading(true);
+    try {
+      await deleteDoc(doc(db, "employees", uuid));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      router.back();
+    }
+  };
+
+  useEffect(() => {
+    getDocument();
+  }, []);
   return (
     <div className="flex flex-col">
       <h1 className="text-2xl font-bold pt-14 pl-16">Manage Employee</h1>
       <div className="flex justify-center pb-16 pt-14">
         <form
-          onSubmit={handleSubmit((data) => {
-            console.log(data);
-          })}
+          onSubmit={handleSubmit((data) => {})}
           className="bg-white rounded-md  pl-8 pr-8 pb-7 "
         >
           <div className="pt-8 pl-8 pb-14">
@@ -59,6 +132,7 @@ export default function Manage_Employee() {
               Surname
             </label>
             <input
+              onChange={(e) => watch("surname", e.target.value)}
               {...register("surname")}
               placeholder="surname"
               className=" border-1 border-[#C4C4C4] pt-2 p-1 border-2 border-solid "
@@ -160,14 +234,27 @@ export default function Manage_Employee() {
               <p className="text-red-400">{errors.salary.message}</p>
             )}
 
-            <div className="flex justify-evenly pt-9 gap-12">
-              <button className="bg-[#074279] text-white text-base font-semibold rounded-full py-2 px-11">
-                Update
-              </button>
-              <button className="bg-[#AB2424] text-white text-base font-semibold p-1 rounded-full py-2 px-11">
-                Delete
-              </button>
-            </div>
+            {loading ? (
+              <div className="px-28">
+                <LoadingSVG currentcolor="#074279" />
+              </div>
+            ) : (
+              <div className="flex justify-evenly pt-9 gap-12">
+                <button
+                  onClick={update}
+                  className="bg-[#074279] text-white text-base font-semibold rounded-full py-2 px-11"
+                >
+                  Update
+                </button>
+
+                <button
+                  onClick={deleteDetail}
+                  className="bg-[#AB2424] text-white text-base font-semibold p-1 rounded-full py-2 px-11"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </form>
       </div>

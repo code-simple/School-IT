@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 // layout
 import Layout from "@/src/layout/dashboard/Layout";
 import Pagination from "@/src/components/Pagination";
 import Employees from "@/src/contents/dashboard/data";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "@/src/components/config/firebase";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 
 Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
 };
 
 export default function Employee() {
+  const [employees, setEmployees] = useState([]);
+  const [user] = useAuthState(auth);
+  const empRef = collection(db, "employees");
+  // Server side filtered query
+  const employeesQuery = query(empRef, where("createdBy", "==", user.uid));
+
+  const getEmployees = async () => {
+    try {
+      const data = await getDocs(employeesQuery);
+      setEmployees(data.docs.map((doc) => doc.data()));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getEmployees();
+  }, []);
+
   return (
     <div className="grid px-5 md:px-14 pt-14">
       <div className="flex justify-between">
@@ -39,19 +60,22 @@ export default function Employee() {
           </thead>
           <tbody>
             {/* MOCK DATA */}
-            {Employees.map((employee) => (
-              <tr className="bg-white">
+            {employees.map((employee) => (
+              <tr className="bg-white" key={employee.uuid}>
                 <td className="py-4 pl-5">{employee.id}</td>
                 <td>{employee.surname}</td>
                 <td>{employee.firstname}</td>
                 <td>{employee.department}</td>
-                <td>{employee.created_on}</td>
+                <td>{employee.created_on?.toDate().toDateString()}</td>
                 <td>
                   <Link
-                    href="/dashboard/manage-employee"
+                    href={{
+                      pathname: "/dashboard/manage-employee",
+                      query: { uuid: employee.uuid },
+                    }}
                     className="font-bold bg text-[#074279]"
                   >
-                    {employee.ACTION}
+                    Manage
                   </Link>
                 </td>
               </tr>

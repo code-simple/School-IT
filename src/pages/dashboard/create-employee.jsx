@@ -8,7 +8,10 @@ import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
 import { doc, setDoc } from "firebase/firestore";
 import LoadingSVG from "@/src/assets/loading";
-import { db } from "@/src/components/config/firebase";
+import { auth, db } from "@/src/components/config/firebase";
+import { useRouter } from "next/router";
+import { serverTimestamp } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 Create_Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -30,7 +33,8 @@ export default function Create_Employee() {
     gender: Yup.string().min(1, "Select Gender"),
     salary: Yup.string().required("Field is required"),
   });
-
+  const [user] = useAuthState(auth);
+  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -50,15 +54,19 @@ export default function Create_Employee() {
 
   const onSubmit = async () => {
     const uuid = uuidv4();
+
     await setDoc(doc(db, "employees", uuid), {
       uuid,
+      createdBy: user.uid,
       surname,
       firstname,
       email,
       department,
       gender,
       salary,
+      created_on: serverTimestamp(),
     });
+    router.back();
   };
 
   return (
@@ -186,7 +194,7 @@ export default function Create_Employee() {
             <div className="flex justify-evenly ">
               {isSubmitting ? (
                 <div className="flex justify-center px-[120px]">
-                  <LoadingSVG currentColor="#175be0" />
+                  <LoadingSVG currentcolor="#175be0" />
                 </div>
               ) : (
                 <div className="pt-9">
