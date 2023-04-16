@@ -78,7 +78,7 @@ export default function Employee() {
                 <td>{employee.surname}</td>
                 <td>{employee.firstname}</td>
                 <td>{employee.department}</td>
-                <td>{employee.created_on?.toDate().toDateString()}</td>
+                <td>{employee.created_on.toDate().toDateString()}</td>
                 <td>
                   <Link
                     href={{
