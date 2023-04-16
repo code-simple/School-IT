@@ -7,7 +7,15 @@ import Pagination from "@/src/components/Pagination";
 import Employees from "@/src/contents/dashboard/data";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "@/src/components/config/firebase";
-import { collection, doc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getCountFromServer,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 
 Employee.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -18,10 +26,14 @@ export default function Employee() {
   const [user] = useAuthState(auth);
   const empRef = collection(db, "employees");
   // Server side filtered query
-  const employeesQuery = query(empRef, where("createdBy", "==", user.uid));
 
   const getEmployees = async () => {
     try {
+      const employeesQuery = query(
+        empRef,
+        where("createdBy", "==", user.email),
+        orderBy("emp_id")
+      );
       const data = await getDocs(employeesQuery);
       setEmployees(data.docs.map((doc) => doc.data()));
     } catch (error) {
@@ -62,7 +74,7 @@ export default function Employee() {
             {/* MOCK DATA */}
             {employees.map((employee) => (
               <tr className="bg-white" key={employee.uuid}>
-                <td className="py-4 pl-5">{employee.id}</td>
+                <td className="py-4 pl-5">{employee.emp_id}</td>
                 <td>{employee.surname}</td>
                 <td>{employee.firstname}</td>
                 <td>{employee.department}</td>

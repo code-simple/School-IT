@@ -39,7 +39,10 @@ export default function Attendence() {
   const getDocuments = async () => {
     try {
       const empRef = collection(db, "employees");
-      const employeesQuery = query(empRef, where("createdBy", "==", user.uid));
+      const employeesQuery = query(
+        empRef,
+        where("createdBy", "==", user.email)
+      );
       const data = await getDocs(employeesQuery);
       setEmployees(data.docs.map((doc) => doc.data()));
     } catch (error) {
@@ -65,7 +68,7 @@ export default function Attendence() {
     const q = query(
       empRef,
       where("created_on", "<=", Timestamp.fromDate(endDate)),
-      where("createdBy", "==", user.uid)
+      where("createdBy", "==", user.email)
     );
     await getDocs(q).then((resp) => {
       setEmployees(resp.docs.map((doc) => doc.data()));

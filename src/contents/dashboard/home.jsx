@@ -1,13 +1,44 @@
 import Admin_dropdown from "@/src/assets/admin_dropdown";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import T_img1 from "@/src/assets/table_img1.png";
 import T_img2 from "@/src/assets/table_img2.png";
 import T_img3 from "@/src/assets/table_img3.png";
 import T_img4 from "@/src/assets/table_img4.png";
 import T_img5 from "@/src/assets/table_img5.png";
+import {
+  collection,
+  getCountFromServer,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "@/src/components/config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { cn } from "@/src/utils/cn";
 
 const Dashboard = () => {
+  const [employees, setEmployees] = useState([]);
+  const [user] = useAuthState(auth);
+  const empRef = collection(db, "employees");
+  const [events, setEvents] = useState("--");
+
+  const totalEvents = async () => {
+    const snapshot = await getCountFromServer(collection(db, "events"));
+    setEvents(snapshot.data().count);
+    const employeesQuery = query(
+      empRef,
+      where("createdBy", "==", user.email),
+      orderBy("emp_id")
+    );
+    const data = await getDocs(employeesQuery);
+    setEmployees(data.docs.map((doc) => doc.data()));
+  };
+
+  useEffect(() => {
+    totalEvents();
+  }, []);
   return (
     <div className="grid px-10 lg:px-16">
       <div className="flex justify-between items-center pt-8 lg:pt-16">
@@ -41,7 +72,7 @@ const Dashboard = () => {
             Events
           </span>
           <div className="flex justify-center pt-5 ">
-            <h1 className="font-bold text-4xl">15</h1>
+            <h1 className="font-bold text-4xl">{events}</h1>
           </div>
         </div>
       </div>
@@ -59,71 +90,32 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white">
-              <td className="py-4 pl-5 flex items-center gap-4">
-                <Image src={T_img1} className="ml-5" alt="img1" />
-                <p>Aderinsola Emmanuel</p>
-              </td>
-              <td className="whitespace-nowrap">02 - 01 - 2020</td>
-              <td>Teaching</td>
-              <td>
-                <p className="bg-[#49A71C4D]/30 text-center rounded-md mr-3">
-                  Present
-                </p>
-              </td>
-            </tr>
-            <tr className="bg-white ">
-              <td className="py-4 pl-5 flex items-center gap-4">
-                <Image src={T_img2} className="ml-5" alt="img2" />
-                <p>Adefarasin Elizabeth</p>
-              </td>
-              <td className="whitespace-nowrap">02 - 01 - 2020</td>
-              <td>Administration</td>
-              <td>
-                <p className="bg-[#FFB3B3] text-center rounded-md mr-3">
-                  Absent
-                </p>
-              </td>
-            </tr>
-            <tr className="bg-white">
-              <td className="py-4 pl-5 flex items-center gap-4">
-                <Image src={T_img3} className="ml-5" alt="img3" />
-                <p>Chukwudi Ugochukwu</p>
-              </td>
-              <td className="whitespace-nowrap">02 - 01 - 2020</td>
-              <td>Administration</td>
-              <td>
-                <p className="bg-[#49A71C4D]/30 text-center rounded-md mr-3">
-                  Present
-                </p>
-              </td>
-            </tr>
-            <tr className="bg-white ">
-              <td className="py-4 pl-5 flex items-center gap-4">
-                <Image src={T_img4} className="ml-5" alt="img4" />
-                <p>Abdullahi Hawau</p>
-              </td>
-              <td className="whitespace-nowrap">02 - 01 - 2020</td>
-              <td>Teaching</td>
-              <td>
-                <p className="bg-[#49A71C4D]/30 text-center rounded-md mr-3">
-                  Present
-                </p>
-              </td>
-            </tr>
-            <tr className="bg-white ">
-              <td className="py-4 pl-5 flex items-center gap-4">
-                <Image src={T_img5} className="ml-5" alt="img5" />
-                <p>Uzomeka Chinyere</p>
-              </td>
-              <td className="whitespace-nowrap">02 - 01 - 2020</td>
-              <td>Security</td>
-              <td>
-                <p className="bg-[#FFB3B3] text-center rounded-md mr-3">
-                  Absent
-                </p>
-              </td>
-            </tr>
+            {employees.map((employee) => (
+              <tr className="bg-white" key={employee.uuid}>
+                <td className="py-4 pl-5 flex items-center gap-4">
+                  <Image src={T_img1} className="ml-5" alt="img1" />
+                  <p className="whitespace-nowrap pr-12 md:pr-0">
+                    {employee.surname + " " + employee.firstname}
+                  </p>
+                </td>
+                <td className="whitespace-nowrap">
+                  <p className="pr-12 md:pr-0">
+                    {employee.created_on.toDate().toDateString()}
+                  </p>
+                </td>
+                <td className="pr-12 md:pr-0">{employee.department}</td>
+                <td>
+                  <p
+                    className={cn("text-center rounded-md mr-3", {
+                      "bg-[#49A71C4D]/30": employee.attendence === "present",
+                      "bg-[#FF0000]/30": employee.attendence === "absent",
+                    })}
+                  >
+                    {employee.attendence}
+                  </p>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

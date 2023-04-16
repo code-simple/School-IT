@@ -6,7 +6,14 @@ import { useForm } from "react-hook-form";
 import Cross from "@/src/assets/cross";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
-import { doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getCountFromServer,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import LoadingSVG from "@/src/assets/loading";
 import { auth, db } from "@/src/components/config/firebase";
 import { useRouter } from "next/router";
@@ -54,10 +61,18 @@ export default function Create_Employee() {
 
   const onSubmit = async () => {
     const uuid = uuidv4();
+    const employeesQuery = query(
+      collection(db, "employees"),
+      where("createdBy", "==", user.email)
+    );
+
+    //Count total employees by this user
+    const snapshot = await getCountFromServer(employeesQuery);
 
     await setDoc(doc(db, "employees", uuid), {
+      emp_id: 1000 + (snapshot.data().count + 1), // Increment 1 to total & Like figma we start from 1000
       uuid,
-      createdBy: user.uid,
+      createdBy: user.email,
       surname,
       firstname,
       email,
