@@ -14,7 +14,14 @@ import { UserContext } from "./Layout";
 import { useRouter } from "next/router";
 import { cn } from "@/src/utils/cn";
 import { auth, db } from "@/src/components/config/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Sidebar = () => {
@@ -28,13 +35,8 @@ const Sidebar = () => {
   const userRef = collection(db, "users");
   // // Server side filtered query
   const getUserDetails = async () => {
-    const userQuery = query(userRef, where("uid", "==", user.uid));
-    try {
-      const data = await getDocs(userQuery);
-      setUserDetails(data.docs.map((doc) => doc.data()));
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await getDoc(doc(db, "users", user.uid));
+    setUserDetails(data.data());
   };
 
   useEffect(() => {
@@ -67,9 +69,9 @@ const Sidebar = () => {
         <div className="grid bg-[#2D4053] place-items-center py-8 text-white text-base">
           <Image src={Avatar} alt="avatar" />
           <span className="text-base pt-2">
-            {userDetails[0]?.firstname} {userDetails[0]?.lastname}
+            {userDetails.firstname} {userDetails.lastname}
           </span>
-          <span className="text-xs pt-7">{userDetails[0]?.email}</span>
+          <span className="text-xs pt-7">{userDetails.email}</span>
         </div>
         <div className="grid gap-4 pt-14">
           <Link href="/dashboard">

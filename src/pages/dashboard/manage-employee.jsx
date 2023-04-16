@@ -80,13 +80,14 @@ export default function Manage_Employee() {
   const update = async () => {
     setLoading(true);
     try {
-      const data = await updateDoc(doc(db, "employees", uuid), {
+      await updateDoc(doc(db, "employees", uuid), {
         surname,
         firstname,
         email,
         department,
         gender,
         salary,
+        attendence: "present",
       });
     } catch (error) {
       console.log(error);
@@ -113,7 +114,7 @@ export default function Manage_Employee() {
   }, []);
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-bold pt-14 pl-16">Manage Employee</h1>
+      <h1 className="text-2xl font-bold pt-14 md:pl-16">Manage Employee</h1>
       <div className="flex justify-center pb-16 pt-14">
         <form
           onSubmit={handleSubmit((data) => {})}
@@ -236,7 +237,7 @@ export default function Manage_Employee() {
 
             {loading ? (
               <div className="px-28">
-                <LoadingSVG currentcolor="#074279" />
+                <LoadingSVG />
               </div>
             ) : (
               <div className="flex justify-evenly pt-9 gap-12">
