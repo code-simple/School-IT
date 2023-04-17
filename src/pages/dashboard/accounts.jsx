@@ -21,7 +21,7 @@ export default function Accounts() {
       <div className="gap-6 grid md:flex justify-center lg:justify-between">
         {/* Card 1 */}
         <div
-          className="bg-gradient-to-b text-white rounded-xl w-[302px] h-[195px] from-[#000000] to-[#5169BF]"
+          className="bg-gradient-to-b text-white rounded-xl w-[302px] h-[195px] from-[#000000] to-[#5169BF] hover:from-pink-500 hover:to-yellow-500"
           // style={{
           //   backgroundImage:
           //     "linear-gradient(198.98deg, #AF2233 -22.31%, #000000 -15.88%, #2D4053 10.76%, #000000 45.95%, #5169BF 87.21%)",
@@ -35,14 +35,16 @@ export default function Accounts() {
             <p>December</p>
             <div className="flex rounded-full border-2 border-white p-2 place-items-center gap-5">
               <p>High</p>
-              <ArrowUp />
+              <p className="animate-bounce">
+                <ArrowUp />
+              </p>
             </div>
           </div>
           <h1 className=" pl-8 pb-8 text-white text-3xl">₦ 300,000</h1>
         </div>
         {/* Card 2 */}
         <div
-          className="rounded-xl bg-gradient-to-b text-white  w-[302px] h-[195px] from-[#000000] to-[#5169BF]"
+          className="rounded-xl bg-gradient-to-b text-white  w-[302px] h-[195px] from-[#000000] to-[#5169BF] hover:from-pink-500 hover:to-yellow-500"
           // style={{
           //   "background-image":
           //     "linear-gradient(198.98deg, #AF2233 -22.31%, #000000 -15.88%, #2D4053 10.76%, #000000 45.95%, #5169BF 87.21%)",

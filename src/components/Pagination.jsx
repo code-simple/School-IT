@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 const Pagination = (props) => {
-  const { nextPage } = props;
   return (
     <div className="flex justify-center rounded-md pb-16 pt-7">
       <ul className="inline-flex -space-x-px font-semibold">
@@ -56,7 +55,6 @@ const Pagination = (props) => {
         <li>
           <Link
             href=""
-            onClick={nextPage}
             className="px-3 py-3  text-gray-500  border-2 font-bold border-[#C4C4C4] rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             Next
