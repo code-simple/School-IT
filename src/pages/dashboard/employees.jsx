@@ -183,10 +183,12 @@ export default function Employee() {
               columns={columns}
               data={employees}
               customStyles={customStyles}
+              pagination
+              //todo: paginationComponent used for custom paginating component. Make one
             />
           </div>
         </div>
-        <Pagination nextPage={pageNext} />
+        {/* <Pagination /> */}
       </div>
 
       {manageBox && <Manage_Employee data={employeeData} />}
