@@ -93,7 +93,11 @@ const Dashboard = () => {
             {employees.map((employee) => (
               <tr className="bg-white" key={employee.uuid}>
                 <td className="py-4 pl-5 flex items-center gap-4">
-                  <Image src={T_img1} className="ml-5" alt="img1" />
+                  <Image
+                    src={T_img1}
+                    className="object-contain pl-4 md:pl-0"
+                    alt="img1"
+                  />
                   <p className="whitespace-nowrap pr-12 md:pr-0">
                     {employee.surname + " " + employee.firstname}
                   </p>

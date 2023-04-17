@@ -22,7 +22,11 @@ const SalaryTable = () => {
 
   // SELECTOR ACCEPTS FUNCTION NOT STRING
   const columns = [
-    { name: "EMP ID", selector: (row, i) => row.emp_id, sortable: true },
+    {
+      name: "EMP ID",
+      selector: (row, i) => Number(row.emp_id) + 1000,
+      sortable: true,
+    },
     {
       name: "NAME",
       selector: (row, i) => row.surname + " " + row.firstname,

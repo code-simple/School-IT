@@ -17,6 +17,8 @@ import {
   where,
   getDocs,
   deleteDoc,
+  orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "@/src/components/config/firebase";
@@ -34,6 +36,7 @@ const defaultValues = {
 export default function Create_Event() {
   const [user] = useAuthState(auth);
   const [events, setEvents] = useState([]);
+  const [date, setDate] = useState(null);
 
   const schema = Yup.object().shape({
     // date: Yup.date().typeError("Incorrect value").required("Date is required"),
@@ -46,7 +49,6 @@ export default function Create_Event() {
     register,
     watch,
     control,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues,
@@ -55,7 +57,6 @@ export default function Create_Event() {
 
   const deleteRow = async (uuid) => {
     await deleteDoc(doc(db, "events", uuid));
-    allEvents();
   };
 
   const columns = [
@@ -66,8 +67,8 @@ export default function Create_Event() {
       width: "70%",
     },
     {
-      name: "DATE",
-      selector: (row) => row.created_on?.toDate().toDateString(),
+      name: "Date",
+      selector: (row) => row.created_on.toDate().toDateString(),
       sortable: true,
     },
 
@@ -109,24 +110,36 @@ export default function Create_Event() {
 
   //watch
   const description = watch("description");
-  const date = watch("date");
 
   const onSubmit = async () => {
-    const uuid = uuidv4();
-    await setDoc(doc(db, "events", uuid), {
-      uuid,
-      createdBy: user.email,
-      description,
-      created_on: Timestamp.fromDate(date),
-    });
-    allEvents();
+    try {
+      const uuid = uuidv4();
+      const data = {
+        uuid,
+        createdBy: user.email,
+        description,
+        created_on: Timestamp.fromDate(date),
+      };
+      await setDoc(doc(db, "events", uuid), data);
+      setEvents([...events, data]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const allEvents = async () => {
-    const ref = collection(db, "events");
-    const q = query(ref, where("createdBy", "==", user.email));
-    const data = await getDocs(q);
-    setEvents(data.docs.map((doc) => doc.data()));
+    try {
+      const ref = collection(db, "events");
+      const q = query(
+        ref,
+        where("createdBy", "==", user.email),
+        orderBy("created_on")
+      );
+      const data = await getDocs(q);
+      setEvents(data.docs.map((doc) => doc.data()));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   useEffect(() => {
@@ -160,11 +173,11 @@ export default function Create_Event() {
             <Controller
               control={control}
               name="date"
-              render={({ field }) => (
+              render={() => (
                 <DatePicker
                   placeholderText="Select date"
-                  onChange={(date) => field.onChange(date)}
-                  selected={field.value}
+                  onChange={(date) => setDate(date)}
+                  selected={date}
                   className="rounded-md px-7 p-2 w-[338px] text-center border-2 border-[#C4C4C4] pt-2  border-1 "
                 />
               )}

@@ -8,7 +8,7 @@ import Layout from "@/src/layout/dashboard/Layout";
 import Radio from "@/src/components/Radio";
 import Tick from "@/src/assets/tick";
 import CrossRed from "@/src/assets/cross-red";
-import Employees from "@/src/contents/dashboard/data";
+import { useRouter } from "next/router";
 import {
   collection,
   doc,
@@ -25,13 +25,11 @@ Attendence.getLayout = function getLayout(page) {
 };
 
 export default function Attendence() {
+  const router = useRouter();
   const [user] = useAuthState(auth);
   const [filterValue, setFilterValue] = useState("");
 
   const [employees, setEmployees] = useState([]);
-  const [surname, setSurname] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [department, setDepartment] = useState("");
   const [endDate, setEndDate] = useState(null);
 
   // const [attendence, setAttendence] = useState("");
@@ -49,15 +47,7 @@ export default function Attendence() {
       console.log(error);
     }
   };
-  // const changeAttendance = async (uuid, attendance) => {
-  //   try {
-  //     await updateDoc(doc(db, "employees", uuid), {
-  //       attendence: attendance,
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
   // Filter by Date
   const handleDate = async () => {
     // handleDate execute on Calender close, if Calander open/close without
@@ -72,11 +62,31 @@ export default function Attendence() {
     );
     await getDocs(q).then((resp) => {
       setEmployees(resp.docs.map((doc) => doc.data()));
-      console.log(resp.docs.map((doc) => doc.data()));
     });
-
-    setEndDate(null);
   };
+
+  const handleChange = async (uuid, attendence) => {
+    try {
+      const newList = employees.map((emp) =>
+        emp.uuid === uuid
+          ? {
+              ...emp,
+              attendence,
+            }
+          : emp
+      );
+
+      setEmployees(newList);
+
+      await updateDoc(doc(db, "employees", uuid), {
+        attendence,
+      });
+      // getDocuments();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getDocuments();
   }, []);
@@ -140,7 +150,7 @@ export default function Attendence() {
                           value={obj.attendence}
                           label="Present"
                           checked={obj.attendence === "present"}
-                          onChange={() => {}}
+                          onChange={() => handleChange(obj.uuid, "present")}
                         />
                         <Radio
                           id={`absent-${obj.uuid}`}
@@ -148,7 +158,7 @@ export default function Attendence() {
                           value={obj.attendance}
                           label="Absent"
                           checked={obj.attendence === "absent"}
-                          onChange={() => {}}
+                          onChange={() => handleChange(obj.uuid, "absent")}
                         />
                       </div>
                     </td>
@@ -165,7 +175,7 @@ export default function Attendence() {
       </div>
       <div className="flex md:justify-center pt-1 md:pt-10 pb-3 lg:pb-10">
         <Link
-          href="#"
+          href="/dashboard"
           className="bg-[#074279] py-2 px-5 md:py-3 lg:px-16 rounded-full text-white text-sm font-bold "
         >
           <span>Submit Attendance Tracker</span>

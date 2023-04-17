@@ -67,7 +67,7 @@ const Sidebar = () => {
           </button>
         </div>
         <div className="grid bg-[#2D4053] place-items-center py-8 text-white text-base">
-          <Image src={Avatar} alt="avatar" />
+          <Image src={Avatar} alt="avatar" priority />
           <span className="text-base pt-2">
             {userDetails.firstname} {userDetails.lastname}
           </span>

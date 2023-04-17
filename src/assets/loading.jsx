@@ -1,15 +1,15 @@
 import * as React from "react";
 
 function LoadingSVG(props) {
-  const { currentcolor = "#074279" } = props;
+  const { currentcolor = "#074279", iconsize = "100" } = props;
   return (
     <svg
       style={{
         margin: "auto",
         background: "#fff",
       }}
-      width="100"
-      height="100"
+      width={iconsize}
+      height={iconsize}
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
       display="block"
