@@ -37,6 +37,7 @@ const Dashboard = () => {
       const data = await getDocs(employeesQuery);
       setEmployees(data.docs.map((doc) => doc.data()));
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="grid px-10 lg:px-16">
