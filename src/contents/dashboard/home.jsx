@@ -25,7 +25,7 @@ const Dashboard = () => {
   const [events, setEvents] = useState("--");
 
   useEffect(() => {
-    const totalEvents = async () => {
+    async () => {
       const snapshot = await getCountFromServer(collection(db, "events"));
       setEvents(snapshot.data().count);
       const employeesQuery = query(
