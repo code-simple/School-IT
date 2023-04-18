@@ -75,7 +75,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* Employees Tracker */}
       <h1 className="py-7 text-2xl font-bold">Employees Tracker</h1>
       {/* Table */}
       <div className="overflow-x-auto relative grid">
