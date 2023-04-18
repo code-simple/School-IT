@@ -5,7 +5,7 @@ import ArrowUp from "@/src/assets/arrow-up";
 import Bill from "@/src/assets/bill";
 import AccountTable from "./account-table";
 import { useState } from "react";
-import SalaryTable from "./salary-table";
+import SalaryTable from "@/src/components/SalaryTable";
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { auth, db } from "@/src/components/config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";

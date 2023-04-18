@@ -4,7 +4,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/src/components/config/firebase";
 
 const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
-  const [filterValue, setFilter] = useState("");
+  const [filterValue, setFilterValue] = useState("");
 
   // SELECTOR ACCEPTS FUNCTION NOT STRING
   const columns = [
@@ -98,7 +98,7 @@ const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
         </h1>
         <input
           value={filterValue}
-          onChange={(e) => setFilter(e.target.value)}
+          onChange={(e) => setFilterValue(e.target.value)}
           className="rounded-md lg:px-7 p-2  text-xs text-center"
           placeholder="Filter by employee's name"
         />

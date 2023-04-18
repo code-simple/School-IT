@@ -6,14 +6,7 @@ import { useForm } from "react-hook-form";
 import Cross from "@/src/assets/cross";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/src/components/config/firebase";
 import LoadingSVG from "@/src/assets/loading";
 
