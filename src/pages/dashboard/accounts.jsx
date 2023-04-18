@@ -40,6 +40,7 @@ export default function Accounts() {
   };
   useEffect(() => {
     getEmployees();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="flex flex-col lg:pt-14 px-12 lg:px-16">
@@ -99,6 +100,7 @@ export default function Accounts() {
           <SalaryTable
             totalpaid={totalpaid}
             setTotalPaid={setTotalpaid}
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             data={employees}
             setData={setEmployees}
           />

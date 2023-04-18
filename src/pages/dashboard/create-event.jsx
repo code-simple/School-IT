@@ -143,6 +143,7 @@ export default function Create_Event() {
 
   useEffect(() => {
     allEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="flex flex-col">

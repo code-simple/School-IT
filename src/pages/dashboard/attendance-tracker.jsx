@@ -89,6 +89,7 @@ export default function Attendence() {
 
   useEffect(() => {
     getDocuments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

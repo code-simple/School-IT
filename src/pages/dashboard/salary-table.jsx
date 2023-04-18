@@ -89,9 +89,7 @@ const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
       },
     },
   };
-  useEffect(() => {
-    setData(data);
-  }, []);
+
   return (
     <div className="pb-24">
       <div className="grid  lg:flex py-2 lg:py-8 justify-between">

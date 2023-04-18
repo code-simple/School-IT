@@ -130,6 +130,7 @@ export default function Employee() {
 
   useEffect(() => {
     getEmployees();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

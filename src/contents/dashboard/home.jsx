@@ -32,11 +32,13 @@ const Dashboard = () => {
       where("createdBy", "==", user.email),
       orderBy("emp_id")
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const data = await getDocs(employeesQuery);
     setEmployees(data.docs.map((doc) => doc.data()));
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     totalEvents();
   }, []);
   return (

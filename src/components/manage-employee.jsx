@@ -50,6 +50,7 @@ export default function Manage_Employee({ data }) {
     setValue("department", data.department);
     setValue("gender", data.gender);
     setValue("salary", data.salary);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update Function

@@ -111,6 +111,7 @@ export default function Manage_Employee() {
 
   useEffect(() => {
     getDocument();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="flex flex-col">
