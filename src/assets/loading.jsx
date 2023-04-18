@@ -6,7 +6,7 @@ function LoadingSVG(props) {
     <svg
       style={{
         margin: "auto",
-        background: "#fff",
+        background: "transparent",
       }}
       width={iconsize}
       height={iconsize}

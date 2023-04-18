@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Layout from "@/src/layout/dashboard/Layout";
+import React, { useContext, useEffect, useState } from "react";
+import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
@@ -37,6 +37,7 @@ export default function Create_Event() {
   const [user] = useAuthState(auth);
   const [events, setEvents] = useState([]);
   const [date, setDate] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const schema = Yup.object().shape({
     // date: Yup.date().typeError("Incorrect value").required("Date is required"),
@@ -55,16 +56,12 @@ export default function Create_Event() {
     resolver: yupResolver(schema),
   });
 
-  const deleteRow = async (uuid) => {
-    await deleteDoc(doc(db, "events", uuid));
-  };
-
   const columns = [
     {
       name: "DESCRIPTION",
       selector: (row) => row?.description,
       sortable: true,
-      width: "70%",
+      width: "60%",
     },
     {
       name: "Date",
@@ -77,7 +74,7 @@ export default function Create_Event() {
       selector: (row) => (
         <button
           onClick={() => deleteRow(row?.uuid)}
-          className="text-red-600 text-xs font-bold"
+          className="text-red-600 text-xs font-bold "
         >
           Delete
         </button>
@@ -86,17 +83,11 @@ export default function Create_Event() {
     },
   ];
 
-  // Stripped Rows Style
-  const conditionalRowStyles = [
-    {
-      when: (row) => parseInt(row.ID) % 2 == 0,
-      style: {
-        backgroundColor: "#ECEAEA",
-      },
-    },
-  ];
   // Head Row style
   const customStyles = {
+    rows: {
+      style: {},
+    },
     headRow: {
       style: {
         background: "#E5E5E5",
@@ -120,15 +111,21 @@ export default function Create_Event() {
         description,
         created_on: Timestamp.fromDate(date),
       };
-      await setDoc(doc(db, "events", uuid), data);
       setEvents([...events, data]);
+      await setDoc(doc(db, "events", uuid), data);
     } catch (error) {
       console.log(error);
     }
   };
+  const deleteRow = async (uuid) => {
+    const newList = events.filter((event) => event.uuid != uuid && event);
+    setEvents(newList);
+    await deleteDoc(doc(db, "events", uuid));
+  };
 
   const allEvents = async () => {
     try {
+      setLoading(true);
       const ref = collection(db, "events");
       const q = query(
         ref,
@@ -139,6 +136,8 @@ export default function Create_Event() {
       setEvents(data.docs.map((doc) => doc.data()));
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -151,7 +150,7 @@ export default function Create_Event() {
       <div className="flex justify-center text-black/50 text-xl font-bold pt-8">
         <h1>Create an Event</h1>
       </div>
-      <div className="flex justify-center pb-16 pt-14">
+      <div className="flex justify-center pb-16 pt-14 pl-0">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="bg-white rounded-md  pl-8 pb-7 "
@@ -164,7 +163,7 @@ export default function Create_Event() {
           <div>
             <label
               htmlFor="date"
-              className="text-[#000000]/40 text-sm font-bold mt-8 pb-2"
+              className="text-[#000000]/40 text-sm font-bold pt-8 pb-2"
             >
               Date
             </label>
@@ -179,6 +178,10 @@ export default function Create_Event() {
                   onChange={(date) => setDate(date)}
                   selected={date}
                   className="rounded-md px-7 p-2 w-[338px] text-center border-2 border-[#C4C4C4] pt-2  border-1 "
+                  showYearDropdown
+                  showMonthDropdown
+                  yearDropdownItemNumber={20}
+                  scrollableYearDropdown
                 />
               )}
             />
@@ -215,12 +218,12 @@ export default function Create_Event() {
         <h1>Event History</h1>
       </div>
       {/* Event History Table */}
-      <div className="px-14 pb-14">
+      <div className=" px-14 pb-14 ">
         <DataTable
           columns={columns}
           data={events}
-          conditionalRowStyles={conditionalRowStyles}
           customStyles={customStyles}
+          progressPending={loading}
         />
       </div>
     </div>

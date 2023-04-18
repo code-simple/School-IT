@@ -83,22 +83,25 @@ const Sidebar = () => {
                 }
               )}
             >
-              <Admin_home />
-              Home
+              <div className="flex justify-center gap-5">
+                <Admin_home /> <span>Home</span>
+              </div>
             </div>
           </Link>
 
           <Link href="/dashboard/employees">
             <div
               className={cn(
-                "flex text-white  gap-4  pl-8  hover:bg-[#2D4053] py-2 rounded-r-lg",
+                "flex text-white  gap-4  pl-7  hover:bg-[#2D4053] py-2 rounded-r-lg",
                 {
                   "bg-[#2D4053]": router.pathname == "/dashboard/employees",
                 }
               )}
             >
-              <Admin_people />
-              Employee
+              <div className="flex justify-center gap-3">
+                <Admin_people />
+                <span>Employee</span>
+              </div>
             </div>
           </Link>
           <Link href="/dashboard/attendance-tracker">
@@ -111,22 +114,26 @@ const Sidebar = () => {
                 }
               )}
             >
-              <Admin_attendance />
-              Attendance
+              <div className="flex justify-center gap-5">
+                <Admin_attendance />
+                <p>Attendance</p>
+              </div>
             </div>
           </Link>
 
           <Link href="/dashboard/accounts">
             <div
               className={cn(
-                "flex text-white  gap-4  pl-8  hover:bg-[#2D4053] py-2 rounded-r-lg",
+                "flex text-white  gap-4  pl-7  hover:bg-[#2D4053] py-2 rounded-r-lg",
                 {
                   "bg-[#2D4053]": router.pathname == "/dashboard/accounts",
                 }
               )}
             >
-              <Admin_expenses />
-              Accounts
+              <div className="flex justify-center gap-3">
+                <Admin_expenses />
+                <p>Accounts</p>
+              </div>
             </div>
           </Link>
           <Link href="/dashboard/create-event">

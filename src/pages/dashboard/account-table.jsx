@@ -2,102 +2,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import Admin_dropdown from "@/src/assets/admin_dropdown";
 
-const AccountTable = () => {
-  const data = [
-    {
-      ID: 1,
-      DATE: "2023-04-10",
-      TIME: "10:30",
-      NAME: "John",
-      DESCRIPTION: "Some description",
-      AMOUNT: "₦ 30000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    {
-      ID: 2,
-      DATE: "2023-04-10",
-      TIME: "11:00",
-      NAME: "Jane",
-      DESCRIPTION: "Another description",
-      AMOUNT: "₦ 45000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    {
-      ID: 3,
-      DATE: "2023-04-10",
-      TIME: "11:00",
-      NAME: "Jane",
-      DESCRIPTION: "Another description",
-      AMOUNT: "₦ 45000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    {
-      ID: 4,
-      DATE: "2023-04-10",
-      TIME: "11:00",
-      NAME: "Jane",
-      DESCRIPTION: "Another description",
-      AMOUNT: "₦ 45000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    {
-      ID: 5,
-      DATE: "2023-04-10",
-      TIME: "11:00",
-      NAME: "Jane",
-      DESCRIPTION: "Another description",
-      AMOUNT: "₦ 45000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    {
-      ID: 6,
-      DATE: "2023-04-10",
-      TIME: "11:00",
-      NAME: "Jane",
-      DESCRIPTION: "Another description",
-      AMOUNT: "₦ 45000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    {
-      ID: 7,
-      DATE: "2023-04-10",
-      TIME: "11:00",
-      NAME: "Jane",
-      DESCRIPTION: "Another description",
-      AMOUNT: "₦ 45000.00",
-      ACTION: (
-        <Link href="#" className="font-bold bg text-[#074279]">
-          Manage
-        </Link>
-      ),
-    },
-    // add more data here
-  ];
-
+const AccountTable = ({ data }) => {
   const ExpandableComponent = ({ data }) => (
     <div className="flex py-7 flex-col bg-[#F5F4F4]">
       <div className="flex  pl-8 gap-10 lg:gap-64 text-xs font-bold text-gray-400 ">
@@ -107,9 +12,9 @@ const AccountTable = () => {
       </div>
       <div className="flex  pt-4 pl-8 gap-10 lg:gap-48">
         <p className="text-xs lg:text-xl whitespace-nowrap font-bold">
-          {data.AMOUNT}
+          {data.salary}
         </p>
-        <p className="text-xs lg:text-xl font-bold">Teaching</p>
+        <p className="text-xs lg:text-xl font-bold">{data.department}</p>
         <p className="text-xs pr-8">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
           fugit dolorum corrupti sint? Aut et aliquam magni quia, assumenda
@@ -123,16 +28,43 @@ const AccountTable = () => {
   );
   // SELECTOR ACCEPTS FUNCTION NOT STRING
   const columns = [
-    { name: "DATE", selector: (row, i) => row.DATE, sortable: true },
-    { name: "TIME", selector: (row, i) => row.TIME, sortable: true },
-    { name: "NAME", selector: (row, i) => row.NAME, sortable: true },
     {
-      name: "DESCRIPTION",
-      selector: (row, i) => row.DESCRIPTION,
+      name: "DATE",
+      selector: (row, i) => row.created_on.toDate().toDateString(),
       sortable: true,
     },
-    { name: "AMOUNT", selector: (row, i) => row.AMOUNT, sortable: true },
-    { name: "ACTION", selector: (row, i) => row.ACTION, sortable: false },
+    {
+      name: "TIME",
+      selector: (row, i) => row.created_on.toDate().toLocaleTimeString("en-US"),
+      sortable: true,
+    },
+    {
+      name: "NAME",
+      selector: (row, i) => row.surname + " " + row.firstname,
+      sortable: true,
+    },
+    {
+      name: "DESCRIPTION",
+      selector: (row, i) => "There the descriptions goes , Lorem text.  ",
+      sortable: true,
+    },
+    {
+      name: "AMOUNT",
+      selector: (row, i) =>
+        Number(row.salary)
+          .toFixed(2)
+          .replace(/\d(?=(\d{3})+\.)/g, "$&,"), // Convert it to number then fixed to 2 then  apply regex
+      sortable: true,
+    },
+    {
+      name: "ACTION",
+      selector: (row, i) => (
+        <button href="#" className="font-bold bg text-[#074279]">
+          Manage
+        </button>
+      ),
+      sortable: false,
+    },
   ];
 
   // Stripped Rows Style

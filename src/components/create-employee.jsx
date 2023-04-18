@@ -7,15 +7,7 @@ import Cross from "@/src/assets/cross";
 import { v4 as uuidv4 } from "uuid";
 import { ReactDialogBox } from "react-js-dialog-box";
 import "react-js-dialog-box/dist/index.css";
-import {
-  Timestamp,
-  collection,
-  doc,
-  getCountFromServer,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { Timestamp, doc, setDoc } from "firebase/firestore";
 import { auth, db } from "@/src/components/config/firebase";
 import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -35,14 +27,13 @@ export default function Create_Employee() {
     email: Yup.string().email("Invalid Email").required("Email is required"),
     department: Yup.string().min(1, "Select Department"),
     gender: Yup.string().min(1, "Select Gender"),
-    salary: Yup.string().required("Field is required"),
+    salary: Yup.number().required("Field is required"),
   });
 
   const [user] = useAuthState(auth);
   const { openBox, employees, setOpenBox, setEmployees } =
     useContext(UserContext);
 
-  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -62,17 +53,11 @@ export default function Create_Employee() {
 
   const onSubmit = async () => {
     const uuid = uuidv4();
-    const employeesQuery = query(
-      collection(db, "employees"),
-      where("createdBy", "==", user.email)
-    );
 
-    //Count total employees by this user
-    const snapshot = await getCountFromServer(employeesQuery);
-
+    const emp_ids = employees.map((emp) => emp.emp_id);
     try {
       const data = {
-        emp_id: Number(snapshot.data().count + 1), // SERIALIZING : Increment 1 to total
+        emp_id: emp_ids.length ? Number(Math.max(...emp_ids) + 1) : 1, // SERIALIZING : Increment 1 to total
         uuid,
         createdBy: user.email,
         surname,

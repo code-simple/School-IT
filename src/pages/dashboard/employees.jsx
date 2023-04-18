@@ -36,12 +36,14 @@ export default function Employee() {
   } = useContext(UserContext);
 
   const [employeeData, setEmployeeData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [user] = useAuthState(auth);
   const empRef = collection(db, "employees");
   // Server side filtered query
 
   const getEmployees = async () => {
+    setLoading(true);
     try {
       const employeesQuery = query(
         empRef,
@@ -53,37 +55,11 @@ export default function Employee() {
       setEmployees(data.docs.map((doc) => doc.data()));
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // TODO:Discuss with teacher
-  const pageNext = async () => {
-    try {
-      // Query the first page of docs
-      const first = query(
-        collection(db, "employees"),
-        orderBy("emp_id"),
-        where("createdBy", "==", user.email),
-        limit(5)
-      );
-      const documentSnapshots = await getDocs(first);
-      // Get the last visible document
-      const lastVisible =
-        documentSnapshots.docs[documentSnapshots.docs.length - 1];
-      const q = query(
-        collection(db, "employees"),
-        orderBy("emp_id"),
-        where("createdBy", "==", user.email),
-        startAfter(lastVisible),
-        limit(5)
-      );
-
-      const data = await getDocs(q);
-      setEmployees(data.docs.map((doc) => doc.data()));
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const columns = [
     {
       name: "#",
@@ -184,6 +160,7 @@ export default function Employee() {
               data={employees}
               customStyles={customStyles}
               pagination
+              progressPending={loading}
               //todo: paginationComponent used for custom paginating component. Make one
             />
           </div>

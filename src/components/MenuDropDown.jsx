@@ -19,7 +19,7 @@ export default function MyDropdown() {
     <Menu as="div" className="inline-block ">
       <div>
         <Menu.Button className="flex items-center">
-          <h3 className="text-base font-bold pl-7 pr-1">Account</h3>
+          <h3 className="text-base font-bold pl-2 md:pl-7 pr-1">Account</h3>
           <Admin_dropdown />
         </Menu.Button>
       </div>

@@ -1,24 +1,10 @@
 import DataTable from "react-data-table-component";
 import { useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import { auth, db } from "@/src/components/config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/src/components/config/firebase";
 
-const SalaryTable = () => {
-  const [filter, setFilter] = useState("");
-  const [employees, setEmployees] = useState([]);
-  const [user] = useAuthState(auth);
-
-  const getEmployees = async () => {
-    const ref = collection(db, "employees");
-    const q = query(
-      ref,
-      where("createdBy", "==", user.email),
-      orderBy("emp_id")
-    );
-    const data = await getDocs(q);
-    setEmployees(data.docs.map((doc) => doc.data()));
-  };
+const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
+  const [filterValue, setFilter] = useState("");
 
   // SELECTOR ACCEPTS FUNCTION NOT STRING
   const columns = [
@@ -38,14 +24,46 @@ const SalaryTable = () => {
       sortable: true,
     },
 
-    { name: "AMOUNT", selector: (row, i) => row.salary, sortable: true },
+    {
+      name: "AMOUNT",
+      selector: (row, i) =>
+        Number(row.salary)
+          .toFixed(2)
+          .replace(/\d(?=(\d{3})+\.)/g, "$&,"),
+      sortable: true,
+    },
     {
       name: "ACTION",
-      selector: (row, i) => (
-        <button className="font-bold text-white px-4 py-2 rounded-full bg-[#074279]">
-          Pay
-        </button>
-      ),
+      selector: (row, i) =>
+        !row?.paid ? (
+          <button
+            onClick={async () => {
+              setTotalPaid(totalpaid + Number(row.salary));
+
+              const updObj = {
+                ...row,
+                paid: row.salary,
+              };
+              const newlist = data.map((emp) =>
+                emp.uuid == row.uuid ? updObj : emp
+              );
+              setData(newlist);
+              await updateDoc(doc(db, "employees", row.uuid), {
+                paid: row.salary,
+              });
+            }}
+            className="font-bold text-white px-4 py-2 rounded-full bg-[#074279]"
+          >
+            Pay
+          </button>
+        ) : (
+          <button
+            disabled
+            className=" font-bold text-white px-4 py-2 rounded-full bg-slate-400"
+          >
+            Paid
+          </button>
+        ),
       sortable: false,
     },
   ];
@@ -72,8 +90,8 @@ const SalaryTable = () => {
     },
   };
   useEffect(() => {
-    getEmployees();
-  }, []);
+    setData(data);
+  }, [data]);
   return (
     <div className="pb-24">
       <div className="grid  lg:flex py-2 lg:py-8 justify-between">
@@ -81,7 +99,7 @@ const SalaryTable = () => {
           December Salary Payment Schedule
         </h1>
         <input
-          value={filter}
+          value={filterValue}
           onChange={(e) => setFilter(e.target.value)}
           className="rounded-md lg:px-7 p-2  text-xs text-center"
           placeholder="Filter by employee's name"
@@ -90,10 +108,10 @@ const SalaryTable = () => {
 
       <DataTable
         columns={columns}
-        data={employees.filter((employee) =>
+        data={data.filter((employee) =>
           (employee.surname + employee.firstname)
             .toLowerCase()
-            .includes(filter.toLowerCase())
+            .includes(filterValue.toLowerCase())
         )}
         conditionalRowStyles={conditionalRowStyles}
         customStyles={customStyles}
