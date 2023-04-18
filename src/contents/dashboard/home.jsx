@@ -24,23 +24,19 @@ const Dashboard = () => {
   const empRef = collection(db, "employees");
   const [events, setEvents] = useState("--");
 
-  const totalEvents = async () => {
-    const snapshot = await getCountFromServer(collection(db, "events"));
-    setEvents(snapshot.data().count);
-    const employeesQuery = query(
-      empRef,
-      where("createdBy", "==", user.email),
-      orderBy("emp_id")
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const data = await getDocs(employeesQuery);
-    setEmployees(data.docs.map((doc) => doc.data()));
-  };
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    totalEvents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const totalEvents = async () => {
+      const snapshot = await getCountFromServer(collection(db, "events"));
+      setEvents(snapshot.data().count);
+      const employeesQuery = query(
+        empRef,
+        where("createdBy", "==", user.email),
+        orderBy("emp_id")
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      const data = await getDocs(employeesQuery);
+      setEmployees(data.docs.map((doc) => doc.data()));
+    };
   }, []);
   return (
     <div className="grid px-10 lg:px-16">
