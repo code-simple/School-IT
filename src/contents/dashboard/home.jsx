@@ -45,7 +45,7 @@ const Dashboard = () => {
         <h1 className="text-2xl font-bold">Summary</h1>
         <Admin_dropdown className="-rotate-90" />
       </div>
-      <p className="pt-4 lg:pt-7">02-January-2020</p>
+      <p className="pt-4 lg:pt-7">02-January-2023</p>
       {/* Cards */}
       <div className="grid gap-3 lg:flex pt-6 lg:pt-12 md:justify-evenly">
         <div className="flex flex-col w-72 h-40 bg-white shadow-2xl rounded-xl">
