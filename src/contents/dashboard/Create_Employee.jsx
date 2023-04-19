@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "@/src/layout/dashboard/Layout";
+import { UserContext } from "@/src/layout/dashboard";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";

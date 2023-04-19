@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
+import Layout, { UserContext } from "@/src/layout/dashboard";
 import Calc from "@/src/assets/calc";
 import ArrowUp from "@/src/assets/arrow-up";
 import Bill from "@/src/assets/bill";

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Avatar from "@/src/assets/admin_avatar_small.png";
 import Image from "next/image";
-import { UserContext } from "./Layout";
+import { UserContext } from ".";
 import Burger from "@/src/assets/Burger";
 import MyDropdown from "@/src/components/MenuDropDown";
 

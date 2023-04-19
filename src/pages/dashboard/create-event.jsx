@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
+import { useContext, useEffect, useState } from "react";
+import Layout, { UserContext } from "@/src/layout/dashboard";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, Controller } from "react-hook-form";
@@ -18,9 +18,8 @@ import {
   getDocs,
   deleteDoc,
   orderBy,
-  serverTimestamp,
 } from "firebase/firestore";
-import { auth, db } from "@/src/components/config/firebase";
+import { db } from "@/src/components/config/firebase";
 import { v4 as uuidv4 } from "uuid";
 import LoadingSVG from "@/src/assets/loading";
 
@@ -39,7 +38,6 @@ export default function Create_Event() {
   const [loading, setLoading] = useState(false);
 
   const schema = Yup.object().shape({
-    // date: Yup.date().typeError("Incorrect value").required("Date is required"),
     description: Yup.string().required("Description is required"),
     date: Yup.date().required("Date is Required"),
   });

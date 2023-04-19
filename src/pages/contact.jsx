@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo_svg from "../assets/logo_svg";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -16,11 +16,7 @@ const Contact = () => {
     message: Yup.string().required("Message is required"),
   });
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm({
+  const { register } = useForm({
     resolver: yupResolver(schema),
   });
 

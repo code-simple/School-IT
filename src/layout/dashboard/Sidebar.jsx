@@ -10,7 +10,7 @@ import Admin_expenses from "@/src/assets/admin_expenses";
 import Admin_events from "@/src/assets/admin_events";
 import Close from "@/src/assets/Close";
 import clsx from "clsx";
-import { UserContext } from "./Layout";
+import { UserContext } from ".";
 import { useRouter } from "next/router";
 import { cn } from "@/src/utils/cn";
 import { auth, db } from "@/src/components/config/firebase";

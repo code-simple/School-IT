@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { UserContext } from "@/src/layout/dashboard/Layout";
+import { UserContext } from "@/src/layout/dashboard";
 // layout
-import Layout from "@/src/layout/dashboard/Layout";
+import Layout from "@/src/layout/dashboard";
 import DataTable from "react-data-table-component";
 import Create_Employee from "@/src/contents/dashboard/Create_Employee";
 import { cn } from "@/src/utils/cn";

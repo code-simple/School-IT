@@ -13,7 +13,7 @@ import {
 import { db } from "@/src/components/config/firebase";
 import { cn } from "@/src/utils/cn";
 import DataTable from "react-data-table-component";
-import { UserContext } from "@/src/layout/dashboard/Layout";
+import { UserContext } from "@/src/layout/dashboard";
 
 const Dashboard = () => {
   const { employees, setEmployees, user } = useContext(UserContext);

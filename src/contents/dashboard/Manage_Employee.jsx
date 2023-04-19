@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Layout from "@/src/layout/dashboard/Layout";
+import Layout from "@/src/layout/dashboard";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";

@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 // layout
-import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
+import Layout, { UserContext } from "@/src/layout/dashboard";
 import Radio from "@/src/components/Radio";
 import Tick from "@/src/assets/tick";
 import CrossRed from "@/src/assets/cross-red";
