@@ -9,23 +9,19 @@ import Admin_attendance from "@/src/assets/admin_attendance";
 import Admin_expenses from "@/src/assets/admin_expenses";
 import Admin_events from "@/src/assets/admin_events";
 import Close from "@/src/assets/Close";
-import clsx from "clsx";
 import { UserContext } from ".";
 import { useRouter } from "next/router";
 import { cn } from "@/src/utils/cn";
-import { auth, db } from "@/src/components/config/firebase";
-import { collection, doc, getDoc } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { db } from "@/src/components/config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const Sidebar = () => {
-  const { menuClosed, setMenuClosed } = useContext(UserContext);
+  const { menuClosed, setMenuClosed, user } = useContext(UserContext);
   const [userDetails, setUserDetails] = useState([]);
 
   const router = useRouter();
   //User details
-  const [user, loading] = useAuthState(auth);
   // console.log(user?.uid);
-  const userRef = collection(db, "users");
   // // Server side filtered query
   const getUserDetails = async () => {
     const data = await getDoc(doc(db, "users", user.uid));
@@ -40,7 +36,7 @@ const Sidebar = () => {
   return (
     <div>
       <div
-        className={clsx(
+        className={cn(
           "bg-[#435260] w-[248px] shrink-0 h-full absolute lg:relative  overflow-y-auto z-20",
           {
             "translate-x-[-100%] lg:translate-x-0": menuClosed,

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo_svg from "@/src/assets/logo_svg";
 import Link from "next/link";
 import Container from "@/src/components/Container";
 import Close from "@/src/assets/Close";
 import Burger from "@/src/assets/Burger";
-import clsx from "clsx";
+import { cn } from "@/src/utils/cn";
 
 const Nav = () => {
   const [menuClosed, setMenuClosed] = useState(true);
@@ -24,7 +24,7 @@ const Nav = () => {
         </div>
 
         <ul
-          className={clsx(
+          className={cn(
             "md:mr-14 flex justify-center font-medium text-center px-8 sm:px-4 md:px-0 space-y-4 md:space-y-0  md:mt-0 items-center flex-col md:flex-row",
             {
               "translate-x-[-100%] md:translate-x-0": menuClosed,
