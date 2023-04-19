@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-
 import { auth } from "@/src/components/config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "@/src/components/Loading";
