@@ -2,7 +2,7 @@ import DataTable from "react-data-table-component";
 import Link from "next/link";
 import Admin_dropdown from "@/src/assets/admin_dropdown";
 
-const AccountTable = ({ data }) => {
+const ExpenseTable = ({ data }) => {
   const ExpandableComponent = ({ data }) => (
     <div className="flex py-7 flex-col bg-[#F5F4F4]">
       <div className="flex  pl-8 gap-10 lg:gap-64 text-xs font-bold text-gray-400 ">
@@ -120,4 +120,4 @@ const AccountTable = ({ data }) => {
   );
 };
 
-export default AccountTable;
+export default ExpenseTable;

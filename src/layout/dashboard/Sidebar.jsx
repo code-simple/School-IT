@@ -14,14 +14,7 @@ import { UserContext } from "./Layout";
 import { useRouter } from "next/router";
 import { cn } from "@/src/utils/cn";
 import { auth, db } from "@/src/components/config/firebase";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Sidebar = () => {

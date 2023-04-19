@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "@/src/layout/dashboard/Layout";
 // layout
 import Layout from "@/src/layout/dashboard/Layout";
-import Pagination from "@/src/components/Pagination";
-import { useAuthState } from "react-firebase-hooks/auth";
 import DataTable from "react-data-table-component";
-import Create_Employee from "@/src/components/create-employee";
+import Create_Employee from "@/src/contents/dashboard/Create_Employee";
 import { cn } from "@/src/utils/cn";
 import Manage_Employee from "@/src/components/manage-employee";
 

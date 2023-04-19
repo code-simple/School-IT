@@ -51,18 +51,11 @@ const Dashboard = () => {
       name: "PERSONAL DETAILS",
       selector: (row) => (
         <div className="py-4 pl-5 flex items-center gap-4">
-          <Image
-            src={T_img1}
-            className="object-contain pl-4 md:pl-0"
-            alt="img1"
-          />
-          <p className="whitespace-nowrap pr-12 md:pr-0">
-            {row.surname + " " + row.firstname}
-          </p>
+          <Image src={T_img1} alt="img1" />
+          <p>{row.surname + " " + row.firstname}</p>
         </div>
       ),
       sortable: true,
-      width: "60%",
     },
     {
       name: "DATE",
@@ -151,58 +144,16 @@ const Dashboard = () => {
           data={employees}
           progressPending={loading}
           customStyles={customStyles}
+          pagination
         />
-
-        {/* <table className="pt-7 border-separate border-spacing-y-2">
-          <thead className="text-base text-[#9F9F9F] text-left">
-            <tr>
-              <th>PERSONAL DETAILS</th>
-              <th>DATE</th>
-              <th>DEPARTMENT</th>
-              <th>STATUS</th>
-            </tr>
-          </thead>
-          <tbody>
-            {employees.map((employee) => (
-              <tr className="bg-white" key={employee.uuid}>
-                <td className="py-4 pl-5 flex items-center gap-4">
-                  <Image
-                    src={T_img1}
-                    className="object-contain pl-4 md:pl-0"
-                    alt="img1"
-                  />
-                  <p className="whitespace-nowrap pr-12 md:pr-0">
-                    {employee.surname + " " + employee.firstname}
-                  </p>
-                </td>
-                <td className="whitespace-nowrap">
-                  <p className="pr-12 md:pr-0">
-                    {employee.created_on.toDate().toDateString()}
-                  </p>
-                </td>
-                <td className="pr-12 md:pr-0">{employee.department}</td>
-                <td>
-                  <p
-                    className={cn("text-center rounded-md mr-3", {
-                      "bg-[#49A71C4D]/30": employee.attendence === "present",
-                      "bg-[#FF0000]/30": employee.attendence === "absent",
-                    })}
-                  >
-                    {employee.attendence}
-                  </p>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
       </div>
-      <button
+      {/* <button
         onClick={() => {}}
         className="flex pt-8 pb-20 gap-4 justify-center place-items-center"
       >
         <h1 className="font-bold">LOAD MORE</h1>
         <Admin_dropdown className="-rotate-90" />
-      </button>
+      </button> */}
     </div>
   );
 };

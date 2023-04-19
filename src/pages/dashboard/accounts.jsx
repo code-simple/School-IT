@@ -3,12 +3,9 @@ import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
 import Calc from "@/src/assets/calc";
 import ArrowUp from "@/src/assets/arrow-up";
 import Bill from "@/src/assets/bill";
-import AccountTable from "./account-table";
+import ExpenseTable from "@/src/contents/dashboard/ExpenseTable";
 import { useState } from "react";
-import SalaryTable from "@/src/components/SalaryTable";
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import { auth, db } from "@/src/components/config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import SalaryTable from "@/src/contents/dashboard/SalaryTable";
 
 Accounts.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -82,7 +79,7 @@ export default function Accounts() {
 
       <div>
         {toggleTable ? (
-          <AccountTable data={employees} />
+          <ExpenseTable data={employees} />
         ) : (
           <SalaryTable
             totalpaid={totalpaid}

@@ -2,7 +2,7 @@ import React from "react";
 
 // layout
 import Layout from "@/src/layout/dashboard/Layout";
-import Dashboard from "@/src/contents/dashboard/home";
+import Dashboard from "@/src/contents/dashboard";
 
 Home.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;

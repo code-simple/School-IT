@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import Avatar from "@/src/assets/admin_avatar_small.png";
 import Image from "next/image";
-import Admin_dropdown from "@/src/assets/admin_dropdown";
 import { UserContext } from "./Layout";
 import Burger from "@/src/assets/Burger";
 import MyDropdown from "@/src/components/MenuDropDown";
@@ -32,7 +31,6 @@ const Navbar = () => {
             {MyDropdown()}
           </div>
         </div>
-        {/* {view && <h1>hellooo</h1>} */}
       </div>
     </>
   );
