@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Layout from "@/src/layout/dashboard/Layout";
+import React, { useContext, useEffect } from "react";
+import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
 import Calc from "@/src/assets/calc";
 import ArrowUp from "@/src/assets/arrow-up";
 import Bill from "@/src/assets/bill";
@@ -16,26 +16,13 @@ Accounts.getLayout = function getLayout(page) {
 
 export default function Accounts() {
   const [toggleTable, setToggleTable] = useState(true);
-  const [employees, setEmployees] = useState([]);
   const [totalpaid, setTotalpaid] = useState(0);
-  const [user] = useAuthState(auth);
+  const { employees, setEmployees } = useContext(UserContext);
 
-  const getEmployees = async () => {
-    const ref = collection(db, "employees");
-    orderBy("emp_id");
-    orderBy("emp_id");
-    const q = query(
-      ref,
-      where("createdBy", "==", user.email),
-      orderBy("emp_id")
-    );
-    const data = await getDocs(q);
-    let allEmp = data.docs.map((doc) => doc.data());
-    setEmployees(allEmp);
-    const allPayement = allEmp
+  const getEmployees = () => {
+    const allPayement = employees
       .filter((emp) => emp.paid && emp)
       .reduce((acc, item) => acc + Number(item.paid), 0);
-    // console.log(allPayement);
     setTotalpaid(allPayement);
   };
   useEffect(() => {

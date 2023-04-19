@@ -20,7 +20,6 @@ import {
   orderBy,
   serverTimestamp,
 } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "@/src/components/config/firebase";
 import { v4 as uuidv4 } from "uuid";
 import LoadingSVG from "@/src/assets/loading";
@@ -34,7 +33,7 @@ const defaultValues = {
 };
 
 export default function Create_Event() {
-  const [user] = useAuthState(auth);
+  const { user } = useContext(UserContext);
   const [events, setEvents] = useState([]);
   const [date, setDate] = useState(null);
   const [loading, setLoading] = useState(false);

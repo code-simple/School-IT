@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 // layout
-import Layout from "@/src/layout/dashboard/Layout";
+import Layout, { UserContext } from "@/src/layout/dashboard/Layout";
 import Radio from "@/src/components/Radio";
 import Tick from "@/src/assets/tick";
 import CrossRed from "@/src/assets/cross-red";
@@ -26,27 +26,10 @@ Attendence.getLayout = function getLayout(page) {
 
 export default function Attendence() {
   const router = useRouter();
-  const [user] = useAuthState(auth);
   const [filterValue, setFilterValue] = useState("");
 
-  const [employees, setEmployees] = useState([]);
+  const { employees, setEmployees, user } = useContext(UserContext);
   const [endDate, setEndDate] = useState(null);
-
-  // const [attendence, setAttendence] = useState("");
-
-  const getDocuments = async () => {
-    try {
-      const empRef = collection(db, "employees");
-      const employeesQuery = query(
-        empRef,
-        where("createdBy", "==", user.email)
-      );
-      const data = await getDocs(employeesQuery);
-      setEmployees(data.docs.map((doc) => doc.data()));
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   // Filter by Date
   const handleDate = async () => {
@@ -86,11 +69,6 @@ export default function Attendence() {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getDocuments();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="grid px-4 lg:px-14 pt-14">

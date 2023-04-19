@@ -30,8 +30,7 @@ export default function Create_Employee() {
     salary: Yup.number().required("Field is required"),
   });
 
-  const [user] = useAuthState(auth);
-  const { openBox, employees, setOpenBox, setEmployees } =
+  const { openBox, employees, setOpenBox, setEmployees, user } =
     useContext(UserContext);
 
   const {

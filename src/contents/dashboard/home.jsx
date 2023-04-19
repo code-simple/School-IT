@@ -1,11 +1,7 @@
 import Admin_dropdown from "@/src/assets/admin_dropdown";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import T_img1 from "@/src/assets/table_img1.png";
-import T_img2 from "@/src/assets/table_img2.png";
-import T_img3 from "@/src/assets/table_img3.png";
-import T_img4 from "@/src/assets/table_img4.png";
-import T_img5 from "@/src/assets/table_img5.png";
 import {
   collection,
   getCountFromServer,
@@ -14,30 +10,101 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { auth, db } from "@/src/components/config/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { db } from "@/src/components/config/firebase";
 import { cn } from "@/src/utils/cn";
+import DataTable from "react-data-table-component";
+import { UserContext } from "@/src/layout/dashboard/Layout";
 
 const Dashboard = () => {
-  const [employees, setEmployees] = useState([]);
-  const [user] = useAuthState(auth);
-  const empRef = collection(db, "employees");
-  const [events, setEvents] = useState("--");
-
-  useEffect(() => {
-    async () => {
-      const snapshot = await getCountFromServer(collection(db, "events"));
-      setEvents(snapshot.data().count);
-      const employeesQuery = query(
-        empRef,
+  const { employees, setEmployees, user } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState(0);
+  const getEmpAndEvents = async () => {
+    setLoading(true);
+    try {
+      const events_q = query(
+        collection(db, "events"),
+        where("createdBy", "==", user.email)
+        // limit(2)
+      );
+      const employee_q = query(
+        collection(db, "employees"),
         where("createdBy", "==", user.email),
         orderBy("emp_id")
+        // limit(2)
       );
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      const data = await getDocs(employeesQuery);
+      const data = await getDocs(employee_q);
+      const totalEvents = await getCountFromServer(events_q);
+      setEvents(totalEvents.data().count);
       setEmployees(data.docs.map((doc) => doc.data()));
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getEmpAndEvents();
+  }, []);
+  const columns = [
+    {
+      name: "PERSONAL DETAILS",
+      selector: (row) => (
+        <div className="py-4 pl-5 flex items-center gap-4">
+          <Image
+            src={T_img1}
+            className="object-contain pl-4 md:pl-0"
+            alt="img1"
+          />
+          <p className="whitespace-nowrap pr-12 md:pr-0">
+            {row.surname + " " + row.firstname}
+          </p>
+        </div>
+      ),
+      sortable: true,
+      width: "60%",
+    },
+    {
+      name: "DATE",
+      selector: (row) => row.created_on.toDate().toDateString(),
+      sortable: true,
+    },
+
+    {
+      name: "DEPARTMENT",
+      selector: (row) => row.department,
+      sortable: true,
+    },
+    {
+      name: "STATUS",
+      selector: (row) => (
+        <div className="pr-12 md:pr-0">
+          <p
+            className={cn("text-center rounded-md px-3 py-1", {
+              "bg-[#49A71C4D]/30": row.attendence === "present",
+              "bg-[#FF0000]/30": row.attendence === "absent",
+            })}
+          >
+            {row.attendence}
+          </p>
+        </div>
+      ),
+      sortable: false,
+    },
+  ];
+
+  const customStyles = {
+    headRow: {
+      style: {
+        backgroundColor: "#E5E5E5",
+        fontSize: "12px",
+        fontWeight: "bold",
+        color: "#9F9F9F",
+      },
+    },
+  };
+  useEffect(() => {
+    getEmpAndEvents();
   }, []);
   return (
     <div className="grid px-10 lg:px-16">
@@ -78,8 +145,15 @@ const Dashboard = () => {
       </div>
       <h1 className="py-7 text-2xl font-bold">Employees Tracker</h1>
       {/* Table */}
-      <div className="overflow-x-auto relative grid">
-        <table className="pt-7 border-separate border-spacing-y-2">
+      <div>
+        <DataTable
+          columns={columns}
+          data={employees}
+          progressPending={loading}
+          customStyles={customStyles}
+        />
+
+        {/* <table className="pt-7 border-separate border-spacing-y-2">
           <thead className="text-base text-[#9F9F9F] text-left">
             <tr>
               <th>PERSONAL DETAILS</th>
@@ -120,7 +194,7 @@ const Dashboard = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
       <button
         onClick={() => {}}

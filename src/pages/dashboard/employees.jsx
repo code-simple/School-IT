@@ -5,18 +5,7 @@ import { UserContext } from "@/src/layout/dashboard/Layout";
 import Layout from "@/src/layout/dashboard/Layout";
 import Pagination from "@/src/components/Pagination";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "@/src/components/config/firebase";
 import DataTable from "react-data-table-component";
-
-import {
-  collection,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  startAfter,
-  where,
-} from "firebase/firestore";
 import Create_Employee from "@/src/components/create-employee";
 import { cn } from "@/src/utils/cn";
 import Manage_Employee from "@/src/components/manage-employee";
@@ -36,29 +25,26 @@ export default function Employee() {
   } = useContext(UserContext);
 
   const [employeeData, setEmployeeData] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const [user] = useAuthState(auth);
-  const empRef = collection(db, "employees");
   // Server side filtered query
 
-  const getEmployees = async () => {
-    setLoading(true);
-    try {
-      const employeesQuery = query(
-        empRef,
-        where("createdBy", "==", user.email),
-        orderBy("emp_id")
-        // limit(2)
-      );
-      const data = await getDocs(employeesQuery);
-      setEmployees(data.docs.map((doc) => doc.data()));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const getEmployees = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const employeesQuery = query(
+  //       empRef,
+  //       where("createdBy", "==", user.email),
+  //       orderBy("emp_id")
+  //       // limit(2)
+  //     );
+  //     const data = await getDocs(employeesQuery);
+  //     setEmployees(data.docs.map((doc) => doc.data()));
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const columns = [
     {
@@ -128,11 +114,6 @@ export default function Employee() {
     },
   };
 
-  useEffect(() => {
-    getEmployees();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
       <div className="grid px-5 md:px-14 pt-14">
@@ -161,7 +142,6 @@ export default function Employee() {
               data={employees}
               customStyles={customStyles}
               pagination
-              progressPending={loading}
               //todo: paginationComponent used for custom paginating component. Make one
             />
           </div>
