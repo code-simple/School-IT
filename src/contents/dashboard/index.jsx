@@ -4,7 +4,9 @@ import Image from "next/image";
 import T_img1 from "@/src/assets/table_img1.png";
 import {
   collection,
+  doc,
   getCountFromServer,
+  getDoc,
   getDocs,
   orderBy,
   query,
@@ -17,10 +19,12 @@ import { UserContext } from "@/src/layout/dashboard";
 
 const Dashboard = () => {
   const { employees, setEmployees, user } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
+  const [load, setload] = useState(false);
   const [events, setEvents] = useState(0);
+  const [totalAttendance, setTotalAttendance] = useState("");
+  const [totalPresent, setTotalPresent] = useState("");
   const getEmpAndEvents = async () => {
-    setLoading(true);
+    setload(true);
     try {
       const events_q = query(
         collection(db, "events"),
@@ -35,17 +39,26 @@ const Dashboard = () => {
       );
       const data = await getDocs(employee_q);
       const totalEvents = await getCountFromServer(events_q);
-      setEvents(totalEvents.data().count);
       setEmployees(data.docs.map((doc) => doc.data()));
+      setEvents(totalEvents.data().count);
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      setload(false);
     }
   };
+
   useEffect(() => {
     getEmpAndEvents();
   }, []);
+
+  // Attendance
+  useEffect(() => {
+    setTotalAttendance(employees.map((obj) => obj.attendence && obj).length);
+    setTotalPresent(
+      employees.filter((obj) => obj.attendence == "present" && obj).length
+    );
+  }, [employees]);
   const columns = [
     {
       name: "PERSONAL DETAILS",
@@ -114,8 +127,10 @@ const Dashboard = () => {
           </span>
           <div className="flex justify-center pt-5 ">
             <h1 className="font-bold text-4xl">
-              300
-              <span className="text-base text-slate-400 ">/400</span>
+              {totalPresent}
+              <span className="text-base text-slate-400 ">
+                /{totalAttendance}
+              </span>
             </h1>
           </div>
         </div>
@@ -142,7 +157,7 @@ const Dashboard = () => {
         <DataTable
           columns={columns}
           data={employees}
-          progressPending={loading}
+          progressPending={load}
           customStyles={customStyles}
           pagination
         />
