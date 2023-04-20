@@ -23,6 +23,7 @@ const Dashboard = () => {
   const [events, setEvents] = useState(0);
   const [totalAttendance, setTotalAttendance] = useState("");
   const [totalPresent, setTotalPresent] = useState("");
+  const today = new Date().toDateString();
   const getEmpAndEvents = async () => {
     setload(true);
     try {
@@ -54,9 +55,16 @@ const Dashboard = () => {
 
   // Attendance
   useEffect(() => {
-    setTotalAttendance(employees.map((obj) => obj.attendence && obj).length);
+    setTotalAttendance(
+      employees.map((obj) => obj?.attendence[new Date().toDateString()] && obj)
+        .length
+    );
     setTotalPresent(
-      employees.filter((obj) => obj.attendence == "present" && obj).length
+      employees.filter(
+        (obj) =>
+          obj.attendence[new Date().toDateString()].attendence == "present" &&
+          obj
+      ).length
     );
   }, [employees]);
   const columns = [
@@ -86,12 +94,21 @@ const Dashboard = () => {
       selector: (row) => (
         <div className="pr-12 md:pr-0">
           <p
-            className={cn("text-center rounded-md px-3 py-1", {
-              "bg-[#49A71C4D]/30": row.attendence === "present",
-              "bg-[#FF0000]/30": row.attendence === "absent",
+            className={cn("bg-slate-500/30 text-center rounded-md px-3 py-1", {
+              "bg-[#49A71C4D]/30":
+                row?.attendence[today]?.attendence === "present",
+              "bg-[#FF0000]/30":
+                row?.attendence[today]?.attendence === "absent" ||
+                (row.attendence[today] &&
+                  Object.keys(row.attendence).find((key) => key === today) !=
+                    today),
             })}
           >
-            {row.attendence}
+            {row.attendence[today] &&
+            Object.keys(row.attendence[today]).find((key) => key === today) !=
+              today
+              ? row.attendence[today].attendence
+              : "No Entry"}
           </p>
         </div>
       ),
@@ -100,6 +117,17 @@ const Dashboard = () => {
   ];
 
   const customStyles = {
+    table: {
+      style: {
+        background: "#E5E5E5",
+      },
+    },
+    rows: {
+      style: {
+        marginBottom: "10px",
+        background: "white",
+      }, // add margin bottom to rows
+    },
     headRow: {
       style: {
         backgroundColor: "#E5E5E5",
@@ -111,6 +139,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     getEmpAndEvents();
+    console.log(employees);
   }, []);
   return (
     <div className="grid px-10 lg:px-16">
@@ -118,7 +147,7 @@ const Dashboard = () => {
         <h1 className="text-2xl font-bold">Summary</h1>
         <Admin_dropdown className="-rotate-90" />
       </div>
-      <p className="pt-4 lg:pt-7">02-January-2023</p>
+      <p className="pt-4 lg:pt-7">{new Date().toDateString()}</p>
       {/* Cards */}
       <div className="grid gap-3 lg:flex pt-6 lg:pt-12 md:justify-evenly">
         <div className="flex flex-col w-72 h-40 bg-white shadow-2xl rounded-xl">
