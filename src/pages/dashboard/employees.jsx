@@ -98,6 +98,7 @@ export default function Employee() {
     },
     rows: {
       style: {
+        borderRadius: "10px",
         marginBottom: "10px",
         background: "white",
       }, // add margin bottom to rows

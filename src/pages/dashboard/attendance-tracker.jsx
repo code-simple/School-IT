@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,6 +13,7 @@ import { doc, endAt, updateDoc } from "firebase/firestore";
 import { db } from "@/src/components/config/firebase";
 import DataTable from "react-data-table-component";
 import clsx from "clsx";
+import { cn } from "@/src/utils/cn";
 
 Attendence.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
@@ -26,13 +27,17 @@ export default function Attendence() {
   const [endDate, setEndDate] = useState(null);
   const [today, setToday] = useState(new Date().toDateString());
   const handleDate = () => {
-    const filteredEmployees = employees.filter((emp) => {
-      const attendanceDates = Object.keys(emp.attendence);
-      return attendanceDates.some(
-        (date) => new Date(date).getTime() === endDate.getTime() // Using some function, if any of dates from object.keys matches endDate [date of]
-      );
-    });
-    setEmployees(filteredEmployees);
+    try {
+      const filteredEmployees = employees.filter((emp) => {
+        const attendanceDates = Object.keys(emp.attendence);
+        return attendanceDates.some(
+          (date) => new Date(date).getTime() === endDate.getTime() // Using some function, if any of dates from object.keys matches endDate [date of]
+        );
+      });
+      setEmployees(filteredEmployees);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleReset = async () => {
@@ -46,7 +51,7 @@ export default function Attendence() {
           ? {
               ...emp,
               attendence: {
-                [today]: { attendence: att },
+                [endDate ? endDate.toDateString() : today]: { attendence: att },
               },
             }
           : emp
@@ -55,7 +60,9 @@ export default function Attendence() {
       setEmployees(newList);
 
       await updateDoc(doc(db, "employees", uuid), {
-        [`attendence.${today}`]: { attendence: att },
+        [`attendence.${endDate ? endDate.toDateString() : today}`]: {
+          attendence: att,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -82,33 +89,44 @@ export default function Attendence() {
     {
       name: "ACTION",
       selector: (row) => (
-        <div className="overflow-x-auto flex gap-5">
-          <Radio
-            id={`present-${row.uuid}`}
-            name={`attendence-${row.uuid}`}
-            value={row?.attendence[today]?.attendence}
-            label="Present"
-            checked={row.attendence[today]?.attendence === "present"}
-            onChange={() => handleChange(row.uuid, "present")}
-          />
-          <Radio
-            id={`absent-${row.uuid}`}
-            name={`attendence-${row.uuid}`}
-            value={row?.attendence[today]?.attendence}
-            label="Absent"
-            checked={row.attendence[today]?.attendence === "absent"}
-            onChange={() => handleChange(row.uuid, "absent")}
-          />
-        </div>
+        <Radio
+          className="h-6 w-6"
+          id={`present-${row.uuid}`}
+          name={`attendence-${row.uuid}`}
+          value={row?.attendence[today]?.attendence}
+          label="Present"
+          checked={
+            row.attendence[endDate ? endDate.toDateString() : today]
+              ?.attendence === "present"
+          }
+          onChange={() => handleChange(row.uuid, "present")}
+        />
       ),
     },
-    { name: "", selector: (row) => "" }, // just an empty column, for some room
+    {
+      name: "",
+      selector: (row) => (
+        <Radio
+          className="h-6 w-6"
+          id={`absent-${row.uuid}`}
+          name={`attendence-${row.uuid}`}
+          value={row?.attendence[today]?.attendence}
+          label="Absent"
+          checked={
+            row.attendence[endDate ? endDate.toDateString() : today]
+              ?.attendence === "absent"
+          }
+          onChange={() => handleChange(row.uuid, "absent")}
+        />
+      ),
+    },
     {
       name: "STATUS",
       selector: (row) => (
         <div>
           <p>
-            {row?.attendence[today]?.attendence == "present" ? (
+            {row?.attendence[endDate ? endDate.toDateString() : today]
+              ?.attendence == "present" ? (
               <Tick />
             ) : (
               <CrossRed />
@@ -128,7 +146,9 @@ export default function Attendence() {
     },
     rows: {
       style: {
+        borderRadius: "10px",
         marginBottom: "10px",
+        paddingleft: "500px",
         background: "white",
       }, // add margin bottom to rows
     },
@@ -141,7 +161,11 @@ export default function Attendence() {
       },
     },
   };
-
+  useEffect(() => {
+    return () => {
+      handleReset();
+    };
+  }, []);
   return (
     <div className="grid px-4 lg:px-14 pt-14">
       <div className="grid md:flex justify-between">
@@ -163,7 +187,7 @@ export default function Attendence() {
           />
           <button
             onClick={handleReset}
-            className={clsx("p-2 bg-white rounded-md text-black", {
+            className={cn("p-2 bg-white rounded-md text-black", {
               "bg-black/70 text-white": endDate,
             })}
           >

@@ -54,19 +54,7 @@ const Dashboard = () => {
   }, []);
 
   // Attendance
-  useEffect(() => {
-    setTotalAttendance(
-      employees.map((obj) => obj?.attendence[new Date().toDateString()] && obj)
-        .length
-    );
-    setTotalPresent(
-      employees.filter(
-        (obj) =>
-          obj.attendence[new Date().toDateString()].attendence == "present" &&
-          obj
-      ).length
-    );
-  }, [employees]);
+
   const columns = [
     {
       name: "PERSONAL DETAILS",
@@ -104,7 +92,7 @@ const Dashboard = () => {
                     today),
             })}
           >
-            {row.attendence[today] &&
+            {row?.attendence[today]?.attendence &&
             Object.keys(row.attendence[today]).find((key) => key === today) !=
               today
               ? row.attendence[today].attendence
@@ -139,8 +127,16 @@ const Dashboard = () => {
   };
   useEffect(() => {
     getEmpAndEvents();
-    console.log(employees);
   }, []);
+  useEffect(() => {
+    setTotalPresent(
+      employees.filter(
+        (obj) =>
+          obj?.attendence[new Date().toDateString()]["attendence"] ==
+            "present" && obj
+      ).length
+    );
+  }, [employees]);
   return (
     <div className="grid px-10 lg:px-16">
       <div className="flex justify-between items-center pt-8 lg:pt-16">
@@ -158,7 +154,7 @@ const Dashboard = () => {
             <h1 className="font-bold text-4xl">
               {totalPresent}
               <span className="text-base text-slate-400 ">
-                /{totalAttendance}
+                /{employees.length}
               </span>
             </h1>
           </div>

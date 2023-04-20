@@ -81,6 +81,7 @@ const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
   const customStyles = {
     rows: {
       style: { background: "#ECEAEA" },
+      borderRadius: "60%",
     },
     headRow: {
       style: {

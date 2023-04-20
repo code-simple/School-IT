@@ -33,13 +33,13 @@ export default function MyDropdown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute top-9 right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute top-12 right-12 z-10 p-3 rounded-lg origin-top-right  bg-white shadow-lg ">
           <div className="grid py-1 ">
             <Menu.Item>
               {({ active }) => (
                 <div
-                  className={cn("flex p-3", {
-                    "bg-gray-100 text-gray-900": active,
+                  className={cn("flex p-2 px-2 rounded-lg", {
+                    "bg-lightred/20 text-slate-800": active,
                     "block px-4 py-2 text-sm": !active,
                   })}
                 >
@@ -50,8 +50,8 @@ export default function MyDropdown() {
             <Menu.Item>
               {({ active }) => (
                 <div
-                  className={cn("flex p-3", {
-                    "bg-gray-100 text-gray-900": active,
+                  className={cn("flex p-2 px-2 rounded-lg", {
+                    "bg-lightred/20 text-slate-800": active,
                     "block px-4 py-2 text-sm": !active,
                   })}
                 >
@@ -62,8 +62,8 @@ export default function MyDropdown() {
             <Menu.Item>
               {({ active }) => (
                 <div
-                  className={cn("flex p-3", {
-                    "bg-gray-100 text-gray-900": active,
+                  className={cn("flex p-2 px-2 rounded-lg", {
+                    "bg-lightred/20 text-slate-800": active,
                     "block px-4 py-2 text-sm": !active,
                   })}
                 >
@@ -75,8 +75,8 @@ export default function MyDropdown() {
             <Menu.Item onClick={() => signOutNow()}>
               {({ active }) => (
                 <div
-                  className={cn("flex p-3", {
-                    "bg-gray-100 text-gray-900": active,
+                  className={cn("flex p-2 px-2 rounded-lg", {
+                    "bg-lightred/20 text-slate-800": active,
                     "block px-4 py-2 text-sm": !active,
                   })}
                 >
