@@ -1,3 +1,5 @@
+# Dev Changes
+
 # SCHOOL IT PROJECT
 
 This is a nextJs project with responsive UI for Desktop, Tablet and Mobile devices. For Front-End Tailwind CSS has been used for styling and responsiveness. For backend firebase has been used.
