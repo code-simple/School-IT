@@ -54,6 +54,7 @@ export default function Create_Employee() {
     const uuid = uuidv4();
 
     const emp_ids = employees.map((emp) => emp.emp_id);
+    const today = new Date().toDateString();
     try {
       const data = {
         emp_id: emp_ids.length ? Number(Math.max(...emp_ids) + 1) : 1, // SERIALIZING : Increment 1 to total
@@ -66,6 +67,9 @@ export default function Create_Employee() {
         gender,
         salary,
         created_on: Timestamp.fromDate(new Date()),
+        attendence: {
+          [today]: { attendence: "present" },
+        },
       };
       setEmployees([...employees, data]);
       setOpenBox(false);

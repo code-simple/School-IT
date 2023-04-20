@@ -78,6 +78,9 @@ const ExpenseTable = ({ data }) => {
   ];
   // Head Row style
   const customStyles = {
+    rows: {
+      style: { background: "#ECEAEA" },
+    },
     headRow: {
       style: {
         backgroundColor: "#E5E5E5",
@@ -106,6 +109,7 @@ const ExpenseTable = ({ data }) => {
         expandableRowsComponent={ExpandableComponent}
         conditionalRowStyles={conditionalRowStyles}
         customStyles={customStyles}
+        striped
       />
       <div className="flex justify-center">
         <button

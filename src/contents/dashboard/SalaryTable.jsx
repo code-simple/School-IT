@@ -79,6 +79,9 @@ const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
   ];
   // Head Row style
   const customStyles = {
+    rows: {
+      style: { background: "#ECEAEA" },
+    },
     headRow: {
       style: {
         backgroundColor: "#E5E5E5",
@@ -113,6 +116,7 @@ const SalaryTable = ({ totalpaid, setTotalPaid, data, setData }) => {
         )}
         conditionalRowStyles={conditionalRowStyles}
         customStyles={customStyles}
+        striped
       />
     </div>
   );

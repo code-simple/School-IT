@@ -83,7 +83,7 @@ export default function Create_Event() {
   // Head Row style
   const customStyles = {
     rows: {
-      style: {},
+      style: { background: "#ECEAEA" },
     },
     headRow: {
       style: {
@@ -95,6 +95,14 @@ export default function Create_Event() {
       },
     },
   };
+  const conditionalRowStyles = [
+    {
+      when: (row) => parseInt(row.emp_id) % 2 == 0,
+      style: {
+        backgroundColor: "#ECEAEA",
+      },
+    },
+  ];
 
   //watch
   const description = watch("description");
@@ -222,6 +230,7 @@ export default function Create_Event() {
           data={events}
           customStyles={customStyles}
           progressPending={loading}
+          striped
         />
       </div>
     </div>
