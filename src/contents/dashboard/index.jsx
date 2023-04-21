@@ -128,6 +128,7 @@ const Dashboard = () => {
   useEffect(() => {
     getEmpAndEvents();
   }, []);
+  // Checks as soon as employees [] changes it get values for totalpresent
   useEffect(() => {
     setTotalPresent(
       employees.filter(

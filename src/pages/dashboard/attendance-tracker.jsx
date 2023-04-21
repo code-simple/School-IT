@@ -163,11 +163,11 @@ export default function Attendence() {
       },
     },
   };
-  useEffect(() => {
-    return () => {
-      handleReset();
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     handleReset();
+  //   };
+  // }, []);
   return (
     <div className="grid px-4 lg:px-14 pt-14">
       <div className="grid md:flex justify-between">
