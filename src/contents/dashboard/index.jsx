@@ -132,8 +132,8 @@ const Dashboard = () => {
     setTotalPresent(
       employees.filter(
         (obj) =>
-          obj?.attendence[new Date().toDateString()]["attendence"] ==
-            "present" && obj
+          obj?.attendence[new Date().toDateString()]?.attendence == "present" &&
+          obj
       ).length
     );
   }, [employees]);
@@ -178,7 +178,7 @@ const Dashboard = () => {
       </div>
       <h1 className="py-7 text-2xl font-bold">Employees Tracker</h1>
       {/* Table */}
-      <div>
+      <div className="pb-8">
         <DataTable
           columns={columns}
           data={employees}
@@ -187,13 +187,6 @@ const Dashboard = () => {
           pagination
         />
       </div>
-      {/* <button
-        onClick={() => {}}
-        className="flex pt-8 pb-20 gap-4 justify-center place-items-center"
-      >
-        <h1 className="font-bold">LOAD MORE</h1>
-        <Admin_dropdown className="-rotate-90" />
-      </button> */}
     </div>
   );
 };

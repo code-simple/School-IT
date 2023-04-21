@@ -51,7 +51,9 @@ export default function Attendence() {
           ? {
               ...emp,
               attendence: {
-                [endDate ? endDate.toDateString() : today]: { attendence: att },
+                [!endDate ? today : endDate.toDateString()]: {
+                  attendence: att,
+                },
               },
             }
           : emp
@@ -206,6 +208,7 @@ export default function Attendence() {
       <div className="flex md:justify-center pt-1 md:pt-10 pb-3 lg:pb-10">
         <Link
           href="/dashboard"
+          onClick={handleReset}
           className="bg-[#074279] py-2 px-5 md:py-3 lg:px-16 rounded-full text-white text-sm font-bold "
         >
           <span>Submit Attendance Tracker</span>
